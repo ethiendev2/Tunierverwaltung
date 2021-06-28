@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Tunierverwaltung.Model
+namespace Tunierverwaltung.Model.Entity.Enums
 {
     public enum PositionFusball
     {
@@ -11,6 +11,6 @@ namespace Tunierverwaltung.Model
         Innenverteidiger,
         Aussenverteidiger,
         Mittelfeld,
-        Stürmer
+        Stuermer
     }
 }

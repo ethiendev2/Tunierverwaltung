@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Tunierverwaltung.Model
+namespace Tunierverwaltung.Model.Entity.Teilnehmer
 {
     public abstract class Teilnehmer
     {

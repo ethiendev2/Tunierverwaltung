@@ -7,39 +7,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Tunierverwaltung.Model.Entity.Enums;
 
-namespace Tunierverwaltung.Model
+namespace Tunierverwaltung.Model.Entity.Teilnehmer
 {
     public class Fussballspieler : Teilnehmer
     {
         #region Eigenschaften
-        private int _fussballspielerId;
         private PositionFusball _position;
         private int _tore;
-        private int _gespielteSpiele;
+        private int _anzahlSpiele;
 
         #endregion
 
         #region Modifier / Accessoren
-        public int FussballspielerId { get => _fussballspielerId; set => _fussballspielerId = value; }
         public int Tore { get => _tore; set => _tore = value; }
         internal PositionFusball Position { get => _position; set => _position = value; }
 
-        public int GespielteSpiele { get => _gespielteSpiele; set => _gespielteSpiele = value; }
+        public int AnzahlSpiele { get => _anzahlSpiele; set => _anzahlSpiele = value; }
 
         #endregion
 
         #region Konstruktoren
-        public Fussballspieler(int v1, string v2, string v3, DateTime v4, int v5, PositionFusball v6, int v7, int v8) 
+        public Fussballspieler(int v1, string v2, string v3, DateTime v4, PositionFusball v5, int v6, int v7)
         {
             TeilnehmerId = v1;
             Vorname = v2;
             Nachname = v3;
             Geburtstag = v4;
-            FussballspielerId = v5;
-            Position = v6;
-            Tore = v7;
-            GespielteSpiele = v8;
+            Position = v5;
+            Tore = v6;
+            AnzahlSpiele = v7;
+
         }
         #endregion
 
