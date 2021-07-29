@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Tunierverwaltung._Default" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Tunierverwaltung.Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -7,6 +7,14 @@
         <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
         <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
+
+    <h2 Themed Buttons ></h2>
+    <p>
+        <button type="button" class="btn btn-default">btn-default</button>
+        <button type="button" class="btn btn-primary">btn-primary</button>
+        <button type="button" class="btn btn-success">btn-success</button>
+
+    </p>
 
     <div class="row">
         <div class="col-md-4">

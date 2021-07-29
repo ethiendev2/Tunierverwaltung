@@ -9,12 +9,12 @@ using Tunierverwaltung.Model;
 
 namespace Tunierverwaltung
 {
-    public partial class _Default : Page
+    public partial class Default : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             FussballspielerController c = new FussballspielerController();
-            c.test();
+            //c.test();
         }
     }
 }

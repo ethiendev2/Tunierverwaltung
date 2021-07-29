@@ -13,4 +13,4 @@ namespace Tunierverwaltung.Model.Entity.Enums
         Mittelfeld,
         Stuermer
     }
-}
+} 
