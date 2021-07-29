@@ -37,7 +37,7 @@ namespace Tunierverwaltung.Controller
         #region Worker
         public void test()       
         {
-            Fussballspieler f = FussballspielerDataMapper.GetByID(1);
+            Fussballspieler f = FussballspielerDataMapper.GetByID(7);
 
             f.Vorname = "Peter";
 
@@ -47,6 +47,8 @@ namespace Tunierverwaltung.Controller
             FussballspielerDataMapper.CreateOrUpdate(f2);
 
             FussballspielerDataMapper.CreateOrUpdate(f);
+
+            Fussballspieler = FussballspielerDataMapper.GetAll();
 
             FussballspielerDataMapper.Delete(f);
 

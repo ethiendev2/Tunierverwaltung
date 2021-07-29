@@ -16,6 +16,48 @@ namespace Tunierverwaltung.Model.DataMappers
         private const string DELETE = "DELETE FROM fussballspieler WHERE ID = @ID";
         private const string CREATE = "insert into fussballspieler values(null,@Vorname, @Nachname, @Geburtstag, @Position, @Tore, @AnzahlSpiele)";
         private const string UPDATE = "UPDATE fussballspieler set ID = @ID, Vorname = @Vorname, Nachname = @Nachname, Geburtstag = @Geburstag, Position = @Position, Tore = @Tore, AnzahlSpiele = @AnzahlSpiele WHERE ID = @ID";
+        private const string SELECT_ALL = "SELECT * FROM fussballspieler";
+
+
+        public static List<Fussballspieler> GetAll()
+        {
+            using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+
+                    command.CommandText = SELECT_ALL;
+
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    List<Fussballspieler> spieler = new List<Fussballspieler>();
+
+                    if (reader.HasRows)
+                    {
+                        while(reader.Read())
+                        {
+                            int id = (int)reader["ID"];
+                            string vorname = (string)reader["Vorname"];
+                            string nachname = (string)reader["Nachname"];
+                            DateTime geburtstag = (DateTime)reader["Geburtstag"];
+                            //Logic for mapping String to Enum
+                            string position = (string)reader["Position"];
+                            PositionFusball pos;
+                            Enum.TryParse<PositionFusball>(position, out pos);
+                            int tore = (int)reader["Tore"];
+                            int spiele = (int)reader["AnzahlSpiele"];
+
+                            spieler.Add(new Fussballspieler(id, vorname, nachname, geburtstag, pos, tore, spiele));
+
+                        }
+                    }
+                    return spieler;
+                }
+            }
+        }
 
         public static Fussballspieler GetByID(int id)
         {
