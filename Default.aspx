@@ -8,12 +8,6 @@
         <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
 
-    <h2 Themed Buttons ></h2>
-    <p>
-        <button type="button" class="btn btn-default">btn-default</button>
-        <button type="button" class="btn btn-primary">btn-primary</button>
-        <button type="button" class="btn btn-success">btn-success</button>
-
     </p>
 
     <div class="row">

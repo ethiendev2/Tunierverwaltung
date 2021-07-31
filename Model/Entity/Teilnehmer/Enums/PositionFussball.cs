@@ -8,9 +8,9 @@ namespace Tunierverwaltung.Model.Entity.Enums
     public enum PositionFusball
     {
         Torwart,
-        Innenverteidiger,
-        Aussenverteidiger,
-        Mittelfeld,
+        Innenverteidiger ,
+        Aussenverteidiger ,
+        Mittelfeld ,
         Stuermer
     }
 } 

@@ -1,50 +1,119 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FussballspielerView.aspx.cs" Inherits="Tunierverwaltung.FussballspielerView" %>
+﻿<%@ Page Title="Fussballspieler" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FussballspielerView.aspx.cs" Inherits="Tunierverwaltung.FussballspielerView" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
 
-    <h2 Themed Buttons ></h2>
-    <p>
-        <button type="button" class="btn btn-default">btn-default</button>
-        <button type="button" class="btn btn-primary">btn-primary</button>
-        <button type="button" class="btn btn-success">btn-success</button>
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <body>
 
-    </p>
+        <div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
+            <asp:GridView ID="GridViewFussballspieler" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true"
+                BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
+                CellPadding="3" DataKeyNames="ID">
+                <FooterStyle BackColor="White" ForeColor="#000066" />
+                <Columns>
+                    <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True"
+                        SortExpression="Id" />
+                    <asp:TemplateField HeaderText="Vorname" SortExpression="Vorname">
+                        <FooterTemplate>
+                            <asp:TextBox ID="tbVorname" runat="server" BorderStyle="None"></asp:TextBox>
+                        </FooterTemplate>
+                        <ItemTemplate>
+                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Vorname") %>'
+                                OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
+                            <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("Id") %>' />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+
+                    <asp:TemplateField HeaderText="Nachname" SortExpression="Nachname">
+                        <FooterTemplate>
+                            <asp:TextBox ID="tbNachname" runat="server" BorderStyle="None"></asp:TextBox>
+                        </FooterTemplate>
+                        <ItemTemplate>
+                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Nachname") %>'
+                                OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Geburtstag" SortExpression="Geburtstag">
+                        <FooterTemplate>
+                            <asp:TextBox ID="tbGeburtstag" runat="server" TextMode="Date" BorderStyle="None"></asp:TextBox>
+                        </FooterTemplate>                        
+                        <ItemTemplate>
+                            <asp:TextBox ID="tbGeburtstag" runat="server"  TextMode="Date" Text='<%# Bind("Geburtstag") %>'
+                                OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Position" SortExpression="Geburtstag">    
+                        <FooterTemplate>
+                            <asp:DropDownList ID="ddlPosition" runat="server" >
+                                <asp:ListItem Text="Torwart" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Innenverteidiger" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Aussenverteidiger" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Mittelfeld" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="Stuermer" Value="4"></asp:ListItem>
+                            </asp:DropDownList>
+                        </FooterTemplate>
+                        <ItemTemplate>
+                            <asp:DropDownList ID="ddlPosition" runat="server" OnTextChanged="DropDownList_TextChanged" >
+                                <asp:ListItem Text="Torwart" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Innenverteidiger" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Aussenverteidiger" Value="2"></asp:ListItem>
+                                <asp:ListItem Text="Mittelfeld" Value="3"></asp:ListItem>
+                                <asp:ListItem Text="Stuermer" Value="4"></asp:ListItem>
+                            </asp:DropDownList>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Tore" SortExpression="Tore">
+                        <FooterTemplate>
+                            <asp:TextBox ID="tbTore" runat="server" BorderStyle="None"></asp:TextBox>
+                        </FooterTemplate>                        
+                        <ItemTemplate>
+                            <asp:TextBox ID="tbTore" runat="server" Text='<%# Bind("Tore") %>'
+                                OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="Anzahl Spiele" SortExpression="Anzahl Spiele">
+                        <FooterTemplate>
+                            <asp:TextBox ID="tbSpiele" runat="server" BorderStyle="None"></asp:TextBox>
+                        </FooterTemplate>                        
+                        <ItemTemplate>
+                            <asp:TextBox ID="tbSpiele" runat="server" Text='<%# Bind("AnzahlSpiele") %>'
+                                OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+
+                </Columns>
+
+                <Columns>
+                    <asp:TemplateField>
+                        <HeaderTemplate>Aktion</HeaderTemplate>
+                        <ItemTemplate>
+                            <asp:Button runat="server" ID="btnEntfernen" Text="Entfernen" OnClick="btnEntfernen_Click" CssClass="btn-danger" />
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:Button runat="server" ID="btnHinzufuegen" Text="Hinzufuegen" OnClick="btnHinzufuegen_Click" CssClass="btn-success"/>
+                        </FooterTemplate>
+                    </asp:TemplateField>
+                </Columns>
+
+                <RowStyle ForeColor="#000066" />
+                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+            </asp:GridView>
         </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-            </p>
-        </div>
-    </div>
+        <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click"
+            Text="Update" CssClass="btn-primary" />
+        <asp:Label ID="lblMessage" runat="server"></asp:Label>
+    </body>
+    </html>
+
 
 </asp:Content>

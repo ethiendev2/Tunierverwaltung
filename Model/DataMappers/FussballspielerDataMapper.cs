@@ -42,7 +42,9 @@ namespace Tunierverwaltung.Model.DataMappers
                             int id = (int)reader["ID"];
                             string vorname = (string)reader["Vorname"];
                             string nachname = (string)reader["Nachname"];
+                            //Mapping Date from Db to String
                             DateTime geburtstag = (DateTime)reader["Geburtstag"];
+                            string gb = geburtstag.ToString(DATE_FORMAT);
                             //Logic for mapping String to Enum
                             string position = (string)reader["Position"];
                             PositionFusball pos;
@@ -50,7 +52,7 @@ namespace Tunierverwaltung.Model.DataMappers
                             int tore = (int)reader["Tore"];
                             int spiele = (int)reader["AnzahlSpiele"];
 
-                            spieler.Add(new Fussballspieler(id, vorname, nachname, geburtstag, pos, tore, spiele));
+                            spieler.Add(new Fussballspieler(id, vorname, nachname, gb, pos, tore, spiele));
 
                         }
                     }
@@ -80,7 +82,9 @@ namespace Tunierverwaltung.Model.DataMappers
 
                         string vorname = (string)reader["Vorname"];
                         string nachname = (string)reader["Nachname"];
+                        //Mapping Date from Db to String
                         DateTime geburtstag = (DateTime)reader["Geburtstag"];
+                        string gb = geburtstag.ToString(DATE_FORMAT);
                         //Logic for mapping String to Enum
                         string position = (string)reader["Position"];
                         PositionFusball pos;
@@ -88,7 +92,7 @@ namespace Tunierverwaltung.Model.DataMappers
                         int tore = (int)reader["Tore"];
                         int spiele = (int)reader["AnzahlSpiele"];
 
-                        return new Fussballspieler(id, vorname, nachname, geburtstag, pos, tore, spiele);
+                        return new Fussballspieler(id, vorname, nachname, gb, pos, tore, spiele);
 
                     }
                 }
@@ -96,7 +100,7 @@ namespace Tunierverwaltung.Model.DataMappers
             return null;
         }
 
-        public static void Delete(Fussballspieler f)
+        public static void Delete(int id)
         {
             using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
             {
@@ -107,7 +111,7 @@ namespace Tunierverwaltung.Model.DataMappers
                     command.CommandType = System.Data.CommandType.Text;
 
                     command.CommandText = DELETE;
-                    command.Parameters.AddWithValue("@ID", f.TeilnehmerId);
+                    command.Parameters.AddWithValue("@ID", id);
 
                     command.ExecuteNonQuery();
 
@@ -123,20 +127,20 @@ namespace Tunierverwaltung.Model.DataMappers
 
                 using (MySqlCommand command = connection.CreateCommand())
                 {
-                    if (f.TeilnehmerId == 0)
+                    if (f.Id == 0)
                     {
                         command.CommandType = System.Data.CommandType.Text;
 
                         command.CommandText = CREATE;
-                        command.Parameters.AddWithValue("@ID", f.TeilnehmerId);
+                        command.Parameters.AddWithValue("@ID", f.Id);
                         command.Parameters.AddWithValue("@Vorname", f.Vorname);
                         command.Parameters.AddWithValue("@Nachname", f.Nachname);
-                        command.Parameters.AddWithValue("@Geburtstag", f.Geburtstag.Date.ToString(DATE_FORMAT));
+                        command.Parameters.AddWithValue("@Geburtstag", Convert.ToDateTime(f.Geburtstag));
                         command.Parameters.AddWithValue("@Position", f.Position.ToString());
                         command.Parameters.AddWithValue("@Tore", f.Tore);
                         command.Parameters.AddWithValue("@AnzahlSpiele", f.AnzahlSpiele);
                         command.ExecuteNonQuery();
-                        f.TeilnehmerId = Convert.ToInt32(command.LastInsertedId);
+                        f.Id = Convert.ToInt32(command.LastInsertedId);
 
                     }
                     else
@@ -144,10 +148,10 @@ namespace Tunierverwaltung.Model.DataMappers
                         command.CommandType = System.Data.CommandType.Text;
 
                         command.CommandText = UPDATE;
-                        command.Parameters.AddWithValue("@ID", f.TeilnehmerId);
+                        command.Parameters.AddWithValue("@ID", f.Id);
                         command.Parameters.AddWithValue("@Vorname", f.Vorname);
                         command.Parameters.AddWithValue("@Nachname", f.Nachname);
-                        command.Parameters.AddWithValue("@Geburstag", f.Geburtstag.Date.ToString(DATE_FORMAT));
+                        command.Parameters.AddWithValue("@Geburstag", Convert.ToDateTime(f.Geburtstag));
                         command.Parameters.AddWithValue("@Position", f.Position.ToString());
                         command.Parameters.AddWithValue("@Tore", f.Tore);
                         command.Parameters.AddWithValue("@AnzahlSpiele", f.AnzahlSpiele);

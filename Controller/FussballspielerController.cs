@@ -29,12 +29,19 @@ namespace Tunierverwaltung.Controller
         #region Konstruktoren
         public FussballspielerController() 
         {
-            //Hohle Liste der Fußballspieler aus DB
+            //Fussballspieler = FussballspielerDataMapper.GetAll();
         }
         #endregion
 
 
         #region Worker
+        
+        public List<Fussballspieler> getAllFussballspieler()
+        {
+            Fussballspieler = FussballspielerDataMapper.GetAll();
+            return Fussballspieler;
+        }
+
         public void test()       
         {
             Fussballspieler f = FussballspielerDataMapper.GetByID(7);
@@ -42,7 +49,7 @@ namespace Tunierverwaltung.Controller
             f.Vorname = "Peter";
 
             Fussballspieler f2 = new Fussballspieler(
-                0, "Test2", "Test2", new DateTime(1990, 1, 1), PositionFusball.Aussenverteidiger, 10, 2);
+                0, "Test2", "Test2", "1990-01-01", PositionFusball.Aussenverteidiger, 10, 2);
 
             FussballspielerDataMapper.CreateOrUpdate(f2);
 
@@ -50,10 +57,10 @@ namespace Tunierverwaltung.Controller
 
             Fussballspieler = FussballspielerDataMapper.GetAll();
 
-            FussballspielerDataMapper.Delete(f);
+            FussballspielerDataMapper.Delete(f.Id);
 
 
-            System.Diagnostics.Debug.WriteLine(f.TeilnehmerId);
+            System.Diagnostics.Debug.WriteLine(f.Id);
             System.Diagnostics.Debug.WriteLine(f.Vorname);
             System.Diagnostics.Debug.WriteLine(f.Nachname);
             System.Diagnostics.Debug.WriteLine(f.Geburtstag);

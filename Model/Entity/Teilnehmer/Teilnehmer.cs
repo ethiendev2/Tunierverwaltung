@@ -14,18 +14,18 @@ namespace Tunierverwaltung.Model.Entity.Teilnehmer
     public abstract class Teilnehmer
     {
         #region Eigenschaften
-        private int _teilnehmerId;
+        private int _Id;
         private string _vorname;
         private string _nachname;
-        private DateTime _geburtstag;
+        private string _geburtstag;
         #endregion
 
         #region Modifier / Accessoren
-        public int TeilnehmerId { get => _teilnehmerId; set => _teilnehmerId = value; }
 
         public string Vorname { get => _vorname; set => _vorname = value; }
         public string Nachname { get => _nachname; set => _nachname = value; }
-        public DateTime Geburtstag { get => _geburtstag; set => _geburtstag = value; }
+        public string Geburtstag { get => _geburtstag; set => _geburtstag = value; }
+        public int Id { get => _Id; set => _Id = value; }
 
         #endregion
 

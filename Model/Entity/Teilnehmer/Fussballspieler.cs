@@ -29,9 +29,9 @@ namespace Tunierverwaltung.Model.Entity.Teilnehmer
         #endregion
 
         #region Konstruktoren
-        public Fussballspieler(int v1, string v2, string v3, DateTime v4, PositionFusball v5, int v6, int v7)
+        public Fussballspieler(int v1, string v2, string v3, string v4, PositionFusball v5, int v6, int v7)
         {
-            TeilnehmerId = v1;
+            Id = v1;
             Vorname = v2;
             Nachname = v3;
             Geburtstag = v4;
