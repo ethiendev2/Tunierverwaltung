@@ -35,7 +35,11 @@ namespace Tunierverwaltung.Controller
 
 
         #region Worker
-        
+        public void FussballspielerHinzufuegen(Fussballspieler f)
+        {
+            FussballspielerDataMapper.CreateOrUpdate(f);
+        }
+
         public List<Fussballspieler> getAllFussballspieler()
         {
             Fussballspieler = FussballspielerDataMapper.GetAll();

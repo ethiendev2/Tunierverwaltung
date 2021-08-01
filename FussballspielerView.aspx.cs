@@ -22,8 +22,12 @@ namespace Tunierverwaltung
             int totalRows = GridViewFussballspieler.Rows.Count;
             rowChanged = new bool[totalRows];
 
-            if(!Page.IsPostBack)
+            lblError.Visible = false;
+
+
+            if (!Page.IsPostBack)
             {
+
                 BindGrid();
 
                 setDropDownList();
@@ -89,19 +93,31 @@ namespace Tunierverwaltung
         {
             if(Page.IsPostBack)
             {
-                TextBox vorname = (TextBox) GridViewFussballspieler.FooterRow.FindControl("tbVorname");
-                TextBox nachname = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbNachname");
-                TextBox geburtstag = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbGeburtstag");
-                DropDownList position = (DropDownList)GridViewFussballspieler.FooterRow.FindControl("ddlPosition");
-                TextBox tore = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbTore");
-                TextBox spiele = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbSpiele");
 
-                PositionFusball pos;
-                Enum.TryParse<PositionFusball>(position.Text, out pos);
+                try
+                {
+                    TextBox vorname = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbVorname");
+                    TextBox nachname = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbNachname");
+                    TextBox geburtstag = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbGeburtstag");
+                    DropDownList position = (DropDownList)GridViewFussballspieler.FooterRow.FindControl("ddlPosition");
+                    TextBox tore = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbTore");
+                    TextBox spiele = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbSpiele");
 
-                Fussballspieler f = new Fussballspieler(0, vorname.Text, nachname.Text, geburtstag.Text, pos, Convert.ToInt32(tore.Text), Convert.ToInt32(spiele.Text));
+                    PositionFusball pos;
+                    Enum.TryParse<PositionFusball>(position.Text, out pos);
 
-                FussballspielerDataMapper.CreateOrUpdate(f);
+
+                    Fussballspieler f = new Fussballspieler(0, vorname.Text, nachname.Text, geburtstag.Text, pos, Convert.ToInt32(tore.Text), Convert.ToInt32(spiele.Text));
+
+                    Global.FussballspielerController.FussballspielerHinzufuegen(f);
+
+                } catch (Exception ex)
+                {
+                    lblError.Text = "Anlegen fehlgeschlagen, bitte versuchen sie es erneut.";
+                    lblError.ForeColor = System.Drawing.Color.Red;
+                    
+                    lblError.Visible = true;
+                }
 
                 BindGrid();
                 setDropDownList();
@@ -117,43 +133,55 @@ namespace Tunierverwaltung
                 {
                     if(rowChanged[i])
                     {
-                        GridViewRow gvr = GridViewFussballspieler.Rows[i];
-                        HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
-                        int id = Convert.ToInt32(hf1.Value);
+                        try
+                        {
+                            GridViewRow gvr = GridViewFussballspieler.Rows[i];
+                            HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
+                            int id = Convert.ToInt32(hf1.Value);
 
-                        TextBox tbVorname = (TextBox)gvr.FindControl("TextBox1");
-                        string vorname = tbVorname.Text;
+                            TextBox tbVorname = (TextBox)gvr.FindControl("tbVorname");
+                            string vorname = tbVorname.Text;
 
-                        TextBox tbNachname = (TextBox)gvr.FindControl("TextBox2");
-                        string nachname = tbNachname.Text;
+                            TextBox tbNachname = (TextBox)gvr.FindControl("tbNachname");
+                            string nachname = tbNachname.Text;
 
-                        TextBox tbGeburtstag = (TextBox)gvr.FindControl("tbGeburtstag");
-                        string gb = tbGeburtstag.Text;
+                            TextBox tbGeburtstag = (TextBox)gvr.FindControl("tbGeburtstag");
+                            string gb = tbGeburtstag.Text;
 
-                        DropDownList ddlPosition = (DropDownList)gvr.FindControl("ddlPosition");
-                        PositionFusball pos;
-                        Enum.TryParse<PositionFusball>(ddlPosition.Text, out pos);
+                            DropDownList ddlPosition = (DropDownList)gvr.FindControl("ddlPosition");
+                            PositionFusball pos;
+                            Enum.TryParse<PositionFusball>(ddlPosition.Text, out pos);
 
-                        TextBox tbTore = (TextBox)gvr.FindControl("tbTore");
-                        int tore = Convert.ToInt32(tbTore.Text);
+                            TextBox tbTore = (TextBox)gvr.FindControl("tbTore");
+                            int tore = Convert.ToInt32(tbTore.Text);
 
-                        TextBox tbSpiele = (TextBox)gvr.FindControl("tbSpiele");
-                        int spiele = Convert.ToInt32(tbSpiele.Text);
+                            TextBox tbSpiele = (TextBox)gvr.FindControl("tbSpiele");
+                            int spiele = Convert.ToInt32(tbSpiele.Text);
 
 
 
-                        Fussballspieler f = Global.FussballspielerController.Fussballspieler.Find(x => x.Id == id);
-                        f.Vorname = vorname;
-                        f.Nachname = nachname;
-                        f.Geburtstag = gb;
-                        f.Position = pos;
-                        f.Tore = tore;
-                        f.AnzahlSpiele = spiele;
-                        FussballspielerDataMapper.CreateOrUpdate(f);
-                   
+                            Fussballspieler f = Global.FussballspielerController.Fussballspieler.Find(x => x.Id == id);
+                            f.Vorname = vorname;
+                            f.Nachname = nachname;
+                            f.Geburtstag = gb;
+                            f.Position = pos;
+                            f.Tore = tore;
+                            f.AnzahlSpiele = spiele;
+
+
+                            Global.FussballspielerController.FussballspielerHinzufuegen(f);
+
+                        } catch (Exception ex)
+                        {
+                            lblError.Text = "Anpassen bei mindestens einem Spieler fehlgeschlagen, bitte versuchen sie es erneut.";
+                            lblError.ForeColor = System.Drawing.Color.Red;
+
+                            lblError.Visible = true;
+                        }
+
                     }
                 }
-                //GridViewFussballspieler.DataBind();
+
                 BindGrid();
                 setDropDownList();
             }

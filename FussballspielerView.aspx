@@ -21,7 +21,7 @@
                             <asp:TextBox ID="tbVorname" runat="server" BorderStyle="None"></asp:TextBox>
                         </FooterTemplate>
                         <ItemTemplate>
-                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Vorname") %>'
+                            <asp:TextBox ID="tbVorname" runat="server" Text='<%# Bind("Vorname") %>'
                                 OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
                             <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("Id") %>' />
                         </ItemTemplate>
@@ -33,7 +33,7 @@
                             <asp:TextBox ID="tbNachname" runat="server" BorderStyle="None"></asp:TextBox>
                         </FooterTemplate>
                         <ItemTemplate>
-                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Nachname") %>'
+                            <asp:TextBox ID="tbNachname" runat="server" Text='<%# Bind("Nachname") %>'
                                 OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
@@ -112,6 +112,9 @@
         <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click"
             Text="Update" CssClass="btn-primary" />
         <asp:Label ID="lblMessage" runat="server"></asp:Label>
+        <div>
+            <asp:Label ID="lblError" runat="server" Visible="false"></asp:Label>
+        </div>
     </body>
     </html>
 
