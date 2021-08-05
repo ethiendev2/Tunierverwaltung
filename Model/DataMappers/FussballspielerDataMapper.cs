@@ -4,22 +4,20 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 using Tunierverwaltung.Model.Entity.Enums;
-using Tunierverwaltung.Model.Entity.Teilnehmer;
+using Tunierverwaltung.Model.Entity.Personen;
 
 namespace Tunierverwaltung.Model.DataMappers
 {
-    public class FussballspielerDataMapper
+    public class FussballspielerDataMapper : AbstractTeilnehmerDataMapper<Fussballspieler>
     {
-        private const string CONNECTION_STRING = "Server=127.0.0.1;Database=Tunierverwaltung;Uid=user;Pwd=password;";
-        private const string DATE_FORMAT = "yyyy-MM-dd";
-        private const string SELECT = "SELECT * FROM fussballspieler f WHERE f.ID = @ID";
-        private const string DELETE = "DELETE FROM fussballspieler WHERE ID = @ID";
-        private const string CREATE = "insert into fussballspieler values(null,@Vorname, @Nachname, @Geburtstag, @Position, @Tore, @AnzahlSpiele)";
-        private const string UPDATE = "UPDATE fussballspieler set ID = @ID, Vorname = @Vorname, Nachname = @Nachname, Geburtstag = @Geburstag, Position = @Position, Tore = @Tore, AnzahlSpiele = @AnzahlSpiele WHERE ID = @ID";
-        private const string SELECT_ALL = "SELECT * FROM fussballspieler";
 
+        private const string SELECT = "select * from fussballspieler f join teilnehmer t on f.TeilnehmerID = t.TeilnehmerID where f.FussballspielerID = @ID";
+        private const string CREATE_FUSSBALLSPIELER = "insert into fussballspieler values (null, @TeilnehmerID, @Position, @Tore, @AnzahlSpiele)";
+        private const string UPDATE_FUSSBALLSPIELER = "UPDATE fussballspieler set FussballspielerID = @FussballspielerID, TeilnehmerID = @TeilnehmerID, Position = @Position, Tore = @Tore, AnzahlSpiele = @AnzahlSpiele WHERE FussballspielerID = @FussballspielerID";
+        private const string SELECT_ALL = "SELECT * FROM fussballspieler f join teilnehmer t on f.TeilnehmerID = t.TeilnehmerID";
 
-        public static List<Fussballspieler> GetAll()
+        
+        public override List<Fussballspieler> GetAll()
         {
             using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
             {
@@ -39,12 +37,13 @@ namespace Tunierverwaltung.Model.DataMappers
                     {
                         while(reader.Read())
                         {
-                            int id = (int)reader["ID"];
+                            int teilnehmerid = (int)reader["TeilnehmerID"];
                             string vorname = (string)reader["Vorname"];
                             string nachname = (string)reader["Nachname"];
                             //Mapping Date from Db to String
                             DateTime geburtstag = (DateTime)reader["Geburtstag"];
                             string gb = geburtstag.ToString(DATE_FORMAT);
+                            int fussballspielerID = (int)reader["FussballspielerID"];
                             //Logic for mapping String to Enum
                             string position = (string)reader["Position"];
                             PositionFusball pos;
@@ -52,7 +51,7 @@ namespace Tunierverwaltung.Model.DataMappers
                             int tore = (int)reader["Tore"];
                             int spiele = (int)reader["AnzahlSpiele"];
 
-                            spieler.Add(new Fussballspieler(id, vorname, nachname, gb, pos, tore, spiele));
+                            spieler.Add(new Fussballspieler(teilnehmerid, vorname, nachname, gb, fussballspielerID, pos, tore, spiele));
 
                         }
                     }
@@ -61,7 +60,7 @@ namespace Tunierverwaltung.Model.DataMappers
             }
         }
 
-        public static Fussballspieler GetByID(int id)
+        public override Fussballspieler GetByID(int id)
         {
             using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING)) 
             {
@@ -79,7 +78,7 @@ namespace Tunierverwaltung.Model.DataMappers
                     if (reader.HasRows)
                     {
                         reader.Read();
-
+                        int teilnehmerID = (int)reader["TeilnehmerID"];
                         string vorname = (string)reader["Vorname"];
                         string nachname = (string)reader["Nachname"];
                         //Mapping Date from Db to String
@@ -92,76 +91,47 @@ namespace Tunierverwaltung.Model.DataMappers
                         int tore = (int)reader["Tore"];
                         int spiele = (int)reader["AnzahlSpiele"];
 
-                        return new Fussballspieler(id, vorname, nachname, gb, pos, tore, spiele);
+                        return new Fussballspieler(teilnehmerID, vorname, nachname, gb, id, pos, tore, spiele);
 
                     }
                 }
             }
             return null;
         }
+        
 
-        public static void Delete(int id)
+        public void CreateOrUpdate(Fussballspieler f)
         {
+            base.CreateOrUpdate(f);
+
             using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
             {
                 connection.Open();
 
                 using (MySqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandType = System.Data.CommandType.Text;
-
-                    command.CommandText = DELETE;
-                    command.Parameters.AddWithValue("@ID", id);
-
-                    command.ExecuteNonQuery();
-
-                }
-            }
-        }
-
-        public static void CreateOrUpdate(Fussballspieler f)
-        {
-            using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
-            {
-                connection.Open();
-
-                using (MySqlCommand command = connection.CreateCommand())
-                {
-                    if (f.Id == 0)
+                    if (f.FussballspielerID == 0)
                     {
-                        command.CommandType = System.Data.CommandType.Text;
-
-                        command.CommandText = CREATE;
-                        command.Parameters.AddWithValue("@ID", f.Id);
-                        command.Parameters.AddWithValue("@Vorname", f.Vorname);
-                        command.Parameters.AddWithValue("@Nachname", f.Nachname);
-                        command.Parameters.AddWithValue("@Geburtstag", Convert.ToDateTime(f.Geburtstag));
+                        command.CommandText = CREATE_FUSSBALLSPIELER;
+                        command.Parameters.AddWithValue("@TeilnehmerID", f.TeilnehmerID);
                         command.Parameters.AddWithValue("@Position", f.Position.ToString());
                         command.Parameters.AddWithValue("@Tore", f.Tore);
                         command.Parameters.AddWithValue("@AnzahlSpiele", f.AnzahlSpiele);
                         command.ExecuteNonQuery();
-                        f.Id = Convert.ToInt32(command.LastInsertedId);
-
+                        f.FussballspielerID = Convert.ToInt32(command.LastInsertedId);
                     }
                     else
                     {
-                        command.CommandType = System.Data.CommandType.Text;
-
-                        command.CommandText = UPDATE;
-                        command.Parameters.AddWithValue("@ID", f.Id);
-                        command.Parameters.AddWithValue("@Vorname", f.Vorname);
-                        command.Parameters.AddWithValue("@Nachname", f.Nachname);
-                        command.Parameters.AddWithValue("@Geburstag", Convert.ToDateTime(f.Geburtstag));
+                        command.CommandText = UPDATE_FUSSBALLSPIELER;
+                        command.Parameters.AddWithValue("@FussballspielerID", f.FussballspielerID);
+                        command.Parameters.AddWithValue("@TeilnehmerID", f.TeilnehmerID);
                         command.Parameters.AddWithValue("@Position", f.Position.ToString());
                         command.Parameters.AddWithValue("@Tore", f.Tore);
                         command.Parameters.AddWithValue("@AnzahlSpiele", f.AnzahlSpiele);
-
                         command.ExecuteNonQuery();
-
-                    }
-
                     }
                 }
             }
         }
     }
+}

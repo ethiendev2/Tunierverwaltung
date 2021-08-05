@@ -9,11 +9,12 @@ using System.Linq;
 using System.Web;
 using Tunierverwaltung.Model.Entity.Enums;
 
-namespace Tunierverwaltung.Model.Entity.Teilnehmer
+namespace Tunierverwaltung.Model.Entity.Personen
 {
     public class Fussballspieler : Teilnehmer
     {
         #region Eigenschaften
+        private int _fussballspielerID;
         private PositionFusball _position;
         private int _tore;
         private int _anzahlSpiele;
@@ -25,19 +26,26 @@ namespace Tunierverwaltung.Model.Entity.Teilnehmer
         internal PositionFusball Position { get => _position; set => _position = value; }
 
         public int AnzahlSpiele { get => _anzahlSpiele; set => _anzahlSpiele = value; }
+        public int FussballspielerID { get => _fussballspielerID; set => _fussballspielerID = value; }
 
         #endregion
 
         #region Konstruktoren
-        public Fussballspieler(int v1, string v2, string v3, string v4, PositionFusball v5, int v6, int v7)
+        public Fussballspieler(int v1, string v2, string v3, string v4, int v5, PositionFusball v6, int v7, int v8)
         {
-            Id = v1;
+            TeilnehmerID = v1;
             Vorname = v2;
             Nachname = v3;
             Geburtstag = v4;
-            Position = v5;
-            Tore = v6;
-            AnzahlSpiele = v7;
+            FussballspielerID = v5;
+            Position = v6;
+            Tore = v7;
+            AnzahlSpiele = v8;
+
+        }
+
+        public Fussballspieler()
+        {
 
         }
         #endregion

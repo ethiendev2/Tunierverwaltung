@@ -9,12 +9,12 @@
 
         <div>
 
-            <asp:GridView ID="GridViewFussballspieler" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true"
+            <asp:GridView ID="GridViewFussballspieler" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
-                CellPadding="3" DataKeyNames="ID">
+                CellPadding="3" DataKeyNames="FussballspielerID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True"
+                    <asp:BoundField DataField="FussballspielerID" HeaderText="Id" InsertVisible="False" ReadOnly="True"
                         SortExpression="Id" />
                     <asp:TemplateField HeaderText="Vorname" SortExpression="Vorname">
                         <FooterTemplate>
@@ -23,7 +23,7 @@
                         <ItemTemplate>
                             <asp:TextBox ID="tbVorname" runat="server" Text='<%# Bind("Vorname") %>'
                                 OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
-                            <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("Id") %>' />
+                            <asp:HiddenField ID="HiddenField1" runat="server" Value='<%# Eval("TeilnehmerID") %>' />
                         </ItemTemplate>
                     </asp:TemplateField>
 

@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Web;
 using Tunierverwaltung.Model.DataMappers;
 using Tunierverwaltung.Model.Entity.Enums;
-using Tunierverwaltung.Model.Entity.Teilnehmer;
+using Tunierverwaltung.Model.Entity.Personen;
 
 namespace Tunierverwaltung.Controller
 {
@@ -18,11 +18,12 @@ namespace Tunierverwaltung.Controller
     {
         #region Eigenschaften
         private List<Fussballspieler> fussballspieler;
-
+        private FussballspielerDataMapper _dataMapper;
         #endregion
 
         #region Modifier / Accessoren
         public List<Fussballspieler> Fussballspieler { get => fussballspieler; set => fussballspieler = value; }
+        public FussballspielerDataMapper DataMapper { get => _dataMapper; set => _dataMapper = value; }
 
         #endregion
 
@@ -30,6 +31,7 @@ namespace Tunierverwaltung.Controller
         public FussballspielerController() 
         {
             //Fussballspieler = FussballspielerDataMapper.GetAll();
+            DataMapper = new FussballspielerDataMapper();
         }
         #endregion
 
@@ -37,42 +39,15 @@ namespace Tunierverwaltung.Controller
         #region Worker
         public void FussballspielerHinzufuegen(Fussballspieler f)
         {
-            FussballspielerDataMapper.CreateOrUpdate(f);
+            DataMapper.CreateOrUpdate(f);
         }
 
         public List<Fussballspieler> getAllFussballspieler()
         {
-            Fussballspieler = FussballspielerDataMapper.GetAll();
+            Fussballspieler = DataMapper.GetAll();
             return Fussballspieler;
         }
 
-        public void test()       
-        {
-            Fussballspieler f = FussballspielerDataMapper.GetByID(7);
-
-            f.Vorname = "Peter";
-
-            Fussballspieler f2 = new Fussballspieler(
-                0, "Test2", "Test2", "1990-01-01", PositionFusball.Aussenverteidiger, 10, 2);
-
-            FussballspielerDataMapper.CreateOrUpdate(f2);
-
-            FussballspielerDataMapper.CreateOrUpdate(f);
-
-            Fussballspieler = FussballspielerDataMapper.GetAll();
-
-            FussballspielerDataMapper.Delete(f.Id);
-
-
-            System.Diagnostics.Debug.WriteLine(f.Id);
-            System.Diagnostics.Debug.WriteLine(f.Vorname);
-            System.Diagnostics.Debug.WriteLine(f.Nachname);
-            System.Diagnostics.Debug.WriteLine(f.Geburtstag);
-            System.Diagnostics.Debug.WriteLine(f.Tore);
-            System.Diagnostics.Debug.WriteLine(f.AnzahlSpiele);
-            System.Diagnostics.Debug.WriteLine(f.Position);
-
-        }
         #endregion
     }
 }

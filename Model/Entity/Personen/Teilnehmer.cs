@@ -9,12 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Tunierverwaltung.Model.Entity.Teilnehmer
+namespace Tunierverwaltung.Model.Entity.Personen
 {
     public abstract class Teilnehmer
     {
         #region Eigenschaften
-        private int _Id;
+        private int _TeilnehmerID;
         private string _vorname;
         private string _nachname;
         private string _geburtstag;
@@ -25,7 +25,7 @@ namespace Tunierverwaltung.Model.Entity.Teilnehmer
         public string Vorname { get => _vorname; set => _vorname = value; }
         public string Nachname { get => _nachname; set => _nachname = value; }
         public string Geburtstag { get => _geburtstag; set => _geburtstag = value; }
-        public int Id { get => _Id; set => _Id = value; }
+        public int TeilnehmerID { get => _TeilnehmerID; set => _TeilnehmerID = value; }
 
         #endregion
 
@@ -34,7 +34,6 @@ namespace Tunierverwaltung.Model.Entity.Teilnehmer
 
 
         #region Worker
-
         #endregion
     }
 }

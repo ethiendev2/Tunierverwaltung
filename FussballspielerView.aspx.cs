@@ -9,7 +9,7 @@ using Tunierverwaltung.Controller;
 using Tunierverwaltung.Model;
 using Tunierverwaltung.Model.DataMappers;
 using Tunierverwaltung.Model.Entity.Enums;
-using Tunierverwaltung.Model.Entity.Teilnehmer;
+using Tunierverwaltung.Model.Entity.Personen;
 
 namespace Tunierverwaltung
 {
@@ -38,7 +38,8 @@ namespace Tunierverwaltung
 
         public void setDropDownList()
         {
-            for (int i = 0; i < GridViewFussballspieler.Rows.Count; i++)
+            // GridViewFussballspieler.Rows.Count
+            for (int i = 0; i < Global.FussballspielerController.Fussballspieler.Count; i++)
             {
                 GridViewRow gvr = GridViewFussballspieler.Rows[i];
                 DropDownList ddl = (DropDownList)gvr.FindControl("ddlPosition");
@@ -51,7 +52,7 @@ namespace Tunierverwaltung
         public void BindGrid()
         {
             GridViewFussballspieler.DataSource = Global.FussballspielerController.getAllFussballspieler();
-
+            EnsureGridViewFooter<Fussballspieler>(GridViewFussballspieler);
             GridViewFussballspieler.DataBind();
 
         }
@@ -82,7 +83,8 @@ namespace Tunierverwaltung
                 HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
                 int id = Convert.ToInt32(hf1.Value);
 
-                FussballspielerDataMapper.Delete(id);
+                FussballspielerDataMapper x = new FussballspielerDataMapper();
+                x.Delete(id);
 
                 BindGrid();
                 setDropDownList();
@@ -107,7 +109,7 @@ namespace Tunierverwaltung
                     Enum.TryParse<PositionFusball>(position.Text, out pos);
 
 
-                    Fussballspieler f = new Fussballspieler(0, vorname.Text, nachname.Text, geburtstag.Text, pos, Convert.ToInt32(tore.Text), Convert.ToInt32(spiele.Text));
+                    Fussballspieler f = new Fussballspieler(0, vorname.Text, nachname.Text, geburtstag.Text, 0, pos, Convert.ToInt32(tore.Text), Convert.ToInt32(spiele.Text));
 
                     Global.FussballspielerController.FussballspielerHinzufuegen(f);
 
@@ -160,7 +162,7 @@ namespace Tunierverwaltung
 
 
 
-                            Fussballspieler f = Global.FussballspielerController.Fussballspieler.Find(x => x.Id == id);
+                            Fussballspieler f = Global.FussballspielerController.Fussballspieler.Find(x => x.TeilnehmerID == id);
                             f.Vorname = vorname;
                             f.Nachname = nachname;
                             f.Geburtstag = gb;
@@ -185,6 +187,28 @@ namespace Tunierverwaltung
                 BindGrid();
                 setDropDownList();
             }
+        }
+
+        public static void EnsureGridViewFooter<T>(GridView gridView) where T : new()
+        {
+            if (gridView == null)
+                throw new ArgumentNullException("gridView");
+
+            if (gridView.DataSource != null && gridView.DataSource is IEnumerable<T> && (gridView.DataSource as IEnumerable<T>).Count() > 0)
+                return;
+
+            // If nothing has been assigned to the grid or it generated no rows we are going to add an empty one.
+            var emptySource = new List<T>();
+            var blankItem = new T();
+            emptySource.Add(blankItem);
+            gridView.DataSource = emptySource;
+
+            // On databinding make sure the empty row is set to invisible so it hides it from display.
+            gridView.RowDataBound += delegate (object sender, GridViewRowEventArgs e)
+            {
+                if (e.Row.DataItem == (object)blankItem)
+                    e.Row.Visible = false;
+            };
         }
     }
 }
