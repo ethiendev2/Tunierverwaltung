@@ -157,6 +157,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="FussballmannschaftView.aspx" />
     <Content Include="FussballspielerView.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -241,7 +242,15 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controller\FussballmannschaftController.cs" />
     <Compile Include="Controller\FussballspielerController.cs" />
+    <Compile Include="FussballmannschaftView.aspx.cs">
+      <DependentUpon>FussballmannschaftView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FussballmannschaftView.aspx.designer.cs">
+      <DependentUpon>FussballmannschaftView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FussballspielerView.aspx.cs">
       <DependentUpon>FussballspielerView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -259,8 +268,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\DataMappers\AbstractMannschaftDataMapper.cs" />
     <Compile Include="Model\DataMappers\AbstractTeilnehmerDataMapper.cs" />
     <Compile Include="Model\DataMappers\AbstractDataMapper.cs" />
+    <Compile Include="Model\DataMappers\FussballmannschaftDataMapper.cs" />
     <Compile Include="Model\DataMappers\FussballspielerDataMapper.cs" />
     <Compile Include="Model\Entity\Mannschaften\FussballMannschaft.cs" />
     <Compile Include="Model\Entity\Mannschaften\Mannschaft.cs" />

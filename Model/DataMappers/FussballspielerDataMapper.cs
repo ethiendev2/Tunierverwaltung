@@ -11,7 +11,7 @@ namespace Tunierverwaltung.Model.DataMappers
     public class FussballspielerDataMapper : AbstractTeilnehmerDataMapper<Fussballspieler>
     {
 
-        private const string SELECT = "select * from fussballspieler f join teilnehmer t on f.TeilnehmerID = t.TeilnehmerID where f.FussballspielerID = @ID";
+        private const string SELECT = "select * from fussballspieler f join teilnehmer t on f.TeilnehmerID = t.TeilnehmerID where f.FussballspielerID = @FussballspielerID";
         private const string CREATE_FUSSBALLSPIELER = "insert into fussballspieler values (null, @TeilnehmerID, @Position, @Tore, @AnzahlSpiele)";
         private const string UPDATE_FUSSBALLSPIELER = "UPDATE fussballspieler set FussballspielerID = @FussballspielerID, TeilnehmerID = @TeilnehmerID, Position = @Position, Tore = @Tore, AnzahlSpiele = @AnzahlSpiele WHERE FussballspielerID = @FussballspielerID";
         private const string SELECT_ALL = "SELECT * FROM fussballspieler f join teilnehmer t on f.TeilnehmerID = t.TeilnehmerID";
@@ -71,7 +71,7 @@ namespace Tunierverwaltung.Model.DataMappers
                     command.CommandType = System.Data.CommandType.Text;
 
                     command.CommandText = SELECT;
-                    command.Parameters.AddWithValue("@ID", id);
+                    command.Parameters.AddWithValue("@FussballspielerID", id);
 
                     MySqlDataReader reader = command.ExecuteReader();
 

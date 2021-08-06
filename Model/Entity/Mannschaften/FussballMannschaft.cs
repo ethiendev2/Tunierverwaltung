@@ -15,30 +15,35 @@ namespace Tunierverwaltung.Model.Entity.Mannschaften
     public class FussballMannschaft : Mannschaft
     {
         #region Eigenschaften
+        private int _fussballmannschaftID;
         private string _liga;
-        private List<Teilnehmer> _spieler;
+        private List<Teilnehmer> _mitglieder;
         #endregion
 
         #region Modifier / Accessoren
-        public List<Teilnehmer> Spieler { get => _spieler; set => _spieler = value; }
         public string Liga { get => _liga; set => _liga = value; }
+        public int FussballmannschaftID { get => _fussballmannschaftID; set => _fussballmannschaftID = value; }
+        public List<Teilnehmer> Mitglieder { get => _mitglieder; set => _mitglieder = value; }
 
         #endregion
 
         #region Konstruktoren
-        public FussballMannschaft(int v1, string v2, string v3, string v4, int v5, int v6, int v7, string v8, List<Teilnehmer> v9)
+        public FussballMannschaft(int v1, string v2, string v3, string v4, int v5, string v6 , List<Teilnehmer> v7)
         {
-            Id = v1;
+            MannschaftID = v1;
             Name = v2;
             Sitz = v3;
             Gruendung = v4;
-            Rang = v5;
-            Siege = v6;
-            Niederlagen = v7;
-            Liga = v8;
-            Spieler = v9;
+
+            FussballmannschaftID = v5;
+            Liga = v6;
+            Mitglieder = v7;
         }
 
+        public FussballMannschaft()
+        {
+
+        }
         #endregion
 
 
