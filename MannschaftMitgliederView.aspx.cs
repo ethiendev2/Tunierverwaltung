@@ -17,14 +17,9 @@ namespace Tunierverwaltung
     public partial class MannschaftMitgliederView : Page
     {
 
-        bool[] rowChanged;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            int totalRows = GridViewMitglieder.Rows.Count;
-            rowChanged = new bool[totalRows];
                 
             TableRow row = new TableRow();
             TableCell cell1 = new TableCell();

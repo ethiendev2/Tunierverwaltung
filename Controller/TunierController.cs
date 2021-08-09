@@ -21,6 +21,7 @@ namespace Tunierverwaltung.Controller
         #region Eigenschaften
         private List<Tunier> _tuniere;
         private TunierDataMapper _dataMapper;
+        private SpielDataMapper spielDataMapper;
         private Tunier _currTunier;
         #endregion
 
@@ -30,6 +31,7 @@ namespace Tunierverwaltung.Controller
         public List<Tunier> Tuniere { get => _tuniere; set => _tuniere = value; }
         public Tunier CurrTunier { get => _currTunier; set => _currTunier = value; }
         public TunierDataMapper DataMapper { get => _dataMapper; set => _dataMapper = value; }
+        public SpielDataMapper SpielDataMapper { get => spielDataMapper; set => spielDataMapper = value; }
 
         #endregion
 
@@ -38,6 +40,7 @@ namespace Tunierverwaltung.Controller
         {
             //Fussballspieler = FussballspielerDataMapper.GetAll();
             DataMapper = new TunierDataMapper();
+            SpielDataMapper = new SpielDataMapper();
         }
         #endregion
 
@@ -61,7 +64,7 @@ namespace Tunierverwaltung.Controller
 
         public List<Spiel> GetCurrSpiele()
         {
-            CurrTunier.Spiele = DataMapper.GetSpiele(CurrTunier.TunierID);
+           CurrTunier.Spiele = DataMapper.GetSpiele(CurrTunier.TunierID);
             return CurrTunier.Spiele;
         }
 
@@ -70,6 +73,17 @@ namespace Tunierverwaltung.Controller
             CurrTunier.Mannschaften = DataMapper.GetMannschaften(CurrTunier.TunierID);
             return CurrTunier.Mannschaften;
         }
+
+        public void addSpiel(Spiel s)
+        {
+            SpielDataMapper.CreateOrUpdate(s);
+            DataMapper.AddSPiel(s.SpielID, CurrTunier.TunierID);
+        }
+        public void updateSpiel(Spiel s)
+        {
+            SpielDataMapper.CreateOrUpdate(s);
+        }
+
         #endregion
     }
 }

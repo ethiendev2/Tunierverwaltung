@@ -14,8 +14,8 @@ namespace Tunierverwaltung.Model.DataMappers
 
         private const string SELECT_ALL = "select * from spiel";
         private const string SELECT = "select * from spiel where SpielID = @SpielID";
-        private const string CREATE_SPIEL = "insert into spiel values (null, @TunierID, @Mannschaft1ID, @Mannschaft1Punkte, @Mannschaft2ID, @Mannschaft2Punkte";
-        private const string UPDATE_SPIEL = "UPDATE spiel set SpielID = @SpielID, TunierID = @TunierID, Mannschaft1ID = @Mannschaft1ID, Mannschaft1Punkte = @Mannschaft1Punkte, Mannschaft2ID = @Mannschaft2ID, Mannschaft2Punkte = @Mannschaft2Punkte";
+        private const string CREATE_SPIEL = "insert into spiel values (null, @TunierID, @Mannschaft1ID, @Mannschaft1Punkte, @Mannschaft2ID, @Mannschaft2Punkte)";
+        private const string UPDATE_SPIEL = "UPDATE spiel set SpielID = @SpielID, TunierID = @TunierID, Mannschaft1ID = @Mannschaft1ID, Mannschaft1Punkte = @Mannschaft1Punkte, Mannschaft2ID = @Mannschaft2ID, Mannschaft2Punkte = @Mannschaft2Punkte where SpielID = @SpielID";
         private const string DELETE = "DELETE FROM spiel WHERE SpielID = @SpielID";
 
 
@@ -68,7 +68,7 @@ namespace Tunierverwaltung.Model.DataMappers
                     command.CommandType = System.Data.CommandType.Text;
 
                     command.CommandText = SELECT;
-                    command.Parameters.AddWithValue("@FussballspielerID", id);
+                    command.Parameters.AddWithValue("@SpielID", id);
 
                     MySqlDataReader reader = command.ExecuteReader();
 

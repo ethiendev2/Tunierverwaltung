@@ -111,7 +111,7 @@ namespace Tunierverwaltung
 
                 Global.TunierController.CurrTunier = Global.TunierController.Tuniere.Find(x => x.TunierID == id);
 
-                Response.Redirect("TunierMannschaftView.aspx");
+                Response.Redirect("TunierMannschaftenView.aspx");
             }
         }
 

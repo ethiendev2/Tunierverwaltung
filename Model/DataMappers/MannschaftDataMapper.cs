@@ -9,7 +9,7 @@ namespace Tunierverwaltung.Model.DataMappers
 {
     public class MannschaftDataMapper : AbstractDataMapper<Mannschaft>
     {
-        private const string SELECT = "select * from mannschaft wWHERE MannschaftID = @MannschaftID";
+        private const string SELECT = "select * from mannschaft WHERE MannschaftID = @MannschaftID";
         private const string SELECT_ALL = "select * from mannschaft";
         private const string DELETE = "DELETE FROM MANNSCHAFT WHERE MannschaftID = @MannschaftID";
         private const string CREATE_MANNSCHAFT = "insert into mannschaft values (null, @Name, @Sitz, @Gruendung, @Sportart)";

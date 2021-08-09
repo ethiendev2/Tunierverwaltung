@@ -22,7 +22,7 @@ namespace Tunierverwaltung.Model.DataMappers
 
         private const string SELECT_SPIELE = "SELECT * FROM tunierspiele where TunierID = @TunierID";
         private const string DELETE_SPIEL = "DELETE FROM tunierspiele WHERE TunierID = @TunierID AND SpielID = @SpielID";
-        private const string ADD_SPIEL = "insert into tunierspiele values (null, @TunierID, @Mannschaft1ID, @Mannschaft1Punkte, @Mannschaft2ID, @Mannschaft2Punkte)";
+        private const string ADD_SPIEL = "insert into tunierspiele values (null, @TunierID, @SpielID)";
 
 
         public List<Tunier> GetAll() 
