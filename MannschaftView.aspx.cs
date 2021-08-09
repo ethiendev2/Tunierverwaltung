@@ -14,13 +14,13 @@ using Tunierverwaltung.Model.Entity.Personen;
 
 namespace Tunierverwaltung
 {
-    public partial class FussballmannschaftView : Page
+    public partial class MannschaftView : Page
     {
         bool[] rowChanged;
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            int totalRows = GridViewFussballmannschaften.Rows.Count;
+            int totalRows = GridViewMannschaft.Rows.Count;
             rowChanged = new bool[totalRows];
 
             lblError.Visible = false;
@@ -31,16 +31,33 @@ namespace Tunierverwaltung
 
                 BindGrid();
 
+                setDropDownList();
             }
 
+
+
+        }
+        public void setDropDownList()
+        {
+
+            for (int i = 0; i < Global.MannschaftController.Mannschaften.Count; i++)
+            {
+                GridViewRow gvr = GridViewMannschaft.Rows[i];
+                DropDownList ddl = (DropDownList)gvr.FindControl("ddlSportart");
+                ddl.ClearSelection();
+                string value = Global.MannschaftController.Mannschaften[i].Sportart.ToString();
+                ddl.Items.FindByText(value).Selected = true;
+
+            }
+            
 
         }
 
         public void BindGrid()
         {
-            GridViewFussballmannschaften.DataSource = Global.FussballmannschaftController.getAlleFussballmannschaften();
-            EnsureGridViewFooter<FussballMannschaft>(GridViewFussballmannschaften);
-            GridViewFussballmannschaften.DataBind();
+            GridViewMannschaft.DataSource = Global.MannschaftController.getAlleMannschaften();
+            EnsureGridViewFooter<Mannschaft>(GridViewMannschaft);
+            GridViewMannschaft.DataBind();
 
         }
 
@@ -70,15 +87,31 @@ namespace Tunierverwaltung
                 HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
                 int id = Convert.ToInt32(hf1.Value);
 
-                FussballmannschaftDataMapper x = new FussballmannschaftDataMapper();
+                MannschaftDataMapper x = new MannschaftDataMapper();
                 x.Delete(id);
 
                 BindGrid();
+
+                setDropDownList();
             }
         }
 
         protected void btnMitglieder_Click(object sender, EventArgs e)
-        { }
+        {
+            if (Page.IsPostBack)
+            {
+                Button btn = (Button)sender;
+                GridViewRow gvr = (GridViewRow)btn.Parent.Parent;
+                int row = gvr.RowIndex;
+
+                HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
+                int id = Convert.ToInt32(hf1.Value);
+
+                Global.MannschaftController.CurrMannschaft = Global.MannschaftController.Mannschaften.Find(x => x.MannschaftID == id);
+
+                Response.Redirect("MannschaftMitgliederView.aspx");
+            }
+        }
 
         protected void btnHinzufuegen_Click(object sender, EventArgs e)
         {
@@ -87,15 +120,18 @@ namespace Tunierverwaltung
 
                 try
                 {
-                    TextBox name = (TextBox)GridViewFussballmannschaften.FooterRow.FindControl("tbName");
-                    TextBox sitz = (TextBox)GridViewFussballmannschaften.FooterRow.FindControl("tbSitz");
-                    TextBox gruendung = (TextBox)GridViewFussballmannschaften.FooterRow.FindControl("tbGruendung");
-                    TextBox liga = (TextBox)GridViewFussballmannschaften.FooterRow.FindControl("tbLiga");
+                    TextBox name = (TextBox)GridViewMannschaft.FooterRow.FindControl("tbName");
+                    TextBox sitz = (TextBox)GridViewMannschaft.FooterRow.FindControl("tbSitz");
+                    TextBox gruendung = (TextBox)GridViewMannschaft.FooterRow.FindControl("tbGruendung");
+                    DropDownList sportart = (DropDownList)GridViewMannschaft.FooterRow.FindControl("ddlSportart");
 
-                    FussballMannschaft m = new FussballMannschaft(0, name.Text, sitz.Text, gruendung.Text, 0, liga.Text, new List<Teilnehmer>());
+                    Sportart sa;
+                    Enum.TryParse<Sportart>(sportart.Text, out sa);
+
+                    Mannschaft m = new Mannschaft(0, name.Text, sitz.Text, gruendung.Text, sa, new List<Teilnehmer>());
 
 
-                    Global.FussballmannschaftController.FussballMannschaftHinzufuegen(m);
+                    Global.MannschaftController.MannschaftHinzufuegen(m);
 
                 } catch (Exception ex)
                 {
@@ -106,6 +142,7 @@ namespace Tunierverwaltung
                 }
 
                 BindGrid();
+                setDropDownList();
             }
         }
 
@@ -113,14 +150,14 @@ namespace Tunierverwaltung
         {
             if (Page.IsPostBack)
             {
-                int totalRows = GridViewFussballmannschaften.Rows.Count;
+                int totalRows = GridViewMannschaft.Rows.Count;
                 for (int i = 0; i < totalRows; i++)
                 {
                     if(rowChanged[i])
                     {
                         try
                         {
-                            GridViewRow gvr = GridViewFussballmannschaften.Rows[i];
+                            GridViewRow gvr = GridViewMannschaft.Rows[i];
                             HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
                             int id = Convert.ToInt32(hf1.Value);
 
@@ -133,17 +170,18 @@ namespace Tunierverwaltung
                             TextBox tbGruendung = (TextBox)gvr.FindControl("tbGruendung");
                             string gd = tbGruendung.Text;
 
-                            TextBox tbLiga = (TextBox)gvr.FindControl("tbLiga");
-                            string liga = tbLiga.Text;
+                            DropDownList ddlSportart = (DropDownList)gvr.FindControl("ddlSportart");
+                            Sportart sa;
+                            Enum.TryParse<Sportart>(ddlSportart.Text, out sa);
 
-
-                            FussballMannschaft m = Global.FussballmannschaftController.FussballMannschaften.Find(x => x.MannschaftID == id);
+                            Mannschaft m = Global.MannschaftController.Mannschaften.Find(x => x.MannschaftID == id);
                             m.Name = name;
                             m.Sitz = sitz;
                             m.Gruendung = gd;
-                            m.Liga = liga;
+                            m.Sportart = sa;
 
-                            Global.FussballmannschaftController.FussballMannschaftHinzufuegen(m);
+
+                            Global.MannschaftController.MannschaftHinzufuegen(m);
 
                         } catch (Exception ex)
                         {
@@ -157,6 +195,7 @@ namespace Tunierverwaltung
                 }
 
                 BindGrid();
+                setDropDownList();
             }
         }
 

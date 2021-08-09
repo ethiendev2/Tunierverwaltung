@@ -48,7 +48,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Position" SortExpression="Geburtstag">    
+                    <asp:TemplateField HeaderText="Position" SortExpression="Position">    
                         <FooterTemplate>
                             <asp:DropDownList ID="ddlPosition" runat="server" >
                                 <asp:ListItem Text="Torwart" Value="0"></asp:ListItem>

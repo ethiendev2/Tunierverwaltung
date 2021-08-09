@@ -14,14 +14,14 @@ namespace Tunierverwaltung
     {
         private static FussballspielerController _fussballspielerController;
 
-        private static FussballmannschaftController _fussballmannschaftController;
+        private static MannschaftController _mannschaftController;
         public static FussballspielerController FussballspielerController { get => _fussballspielerController; set => _fussballspielerController = value; }
-        public static FussballmannschaftController FussballmannschaftController { get => _fussballmannschaftController; set => _fussballmannschaftController = value; }
+        public static MannschaftController MannschaftController { get => _mannschaftController; set => _mannschaftController = value; }
 
         public Global() : base()
         {
             FussballspielerController = new FussballspielerController();
-            FussballmannschaftController = new FussballmannschaftController();
+            MannschaftController = new MannschaftController();
         }
         void Application_Start(object sender, EventArgs e)
         {

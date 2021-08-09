@@ -11,7 +11,7 @@ namespace Tunierverwaltung
 {
 
 
-    public partial class FussballmannschaftView
+    public partial class MannschaftView
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace Tunierverwaltung
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// GridViewFussballmannschaften control.
+        /// GridViewMannschaft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewFussballmannschaften;
+        protected global::System.Web.UI.WebControls.GridView GridViewMannschaft;
 
         /// <summary>
         /// btnUpdate control.

@@ -15,7 +15,10 @@ namespace Tunierverwaltung.Model.DataMappers
         private const string CREATE_TEILNEHMER = "insert into teilnehmer values (null, @Vorname, @Nachname, @Geburtstag)";
         private const string UPDATE_TEILNEHMER = "UPDATE teilnehmer set TeilnehmerID = @TeilnehmerID, Vorname = @Vorname, Nachname = @Nachname, Geburtstag = @Geburtstag WHERE TeilnehmerID = @TeilnehmerID";
         
-        public abstract List<T> GetAll();
+        public List<Teilnehmer> GetAll()
+        {
+            return new List<Teilnehmer>();
+        }
 
         public abstract T GetByID(int id);
         

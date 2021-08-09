@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Fussballspieler" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FussballmannschaftView.aspx.cs" Inherits="Tunierverwaltung.FussballmannschaftView" %>
+﻿<%@ Page Title="Fussballspieler" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MannschaftView.aspx.cs" Inherits="Tunierverwaltung.MannschaftView" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -7,16 +7,16 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <div>
-            <asp:Label ID="Label1" runat="server" Visible="true">Fusballmannschaften</asp:Label>
+            <asp:Label ID="Label1" runat="server" Visible="true">Mannschaftsverwaltung</asp:Label>
         </div>
         <div>
 
-            <asp:GridView ID="GridViewFussballmannschaften" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewMannschaft" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <Columns>
-                    <asp:BoundField DataField="FussballmannschaftID" HeaderText="Id" InsertVisible="False" ReadOnly="True"
+                    <asp:BoundField DataField="MannschaftID" HeaderText="Id" InsertVisible="False" ReadOnly="True"
                         SortExpression="Id" />
                     <asp:TemplateField HeaderText="Name" SortExpression="Name">
                         <FooterTemplate>
@@ -50,15 +50,23 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Liga" SortExpression="Liga">
+                       <asp:TemplateField HeaderText="Sportart" SortExpression="Sportart">    
                         <FooterTemplate>
-                            <asp:TextBox ID="tbLiga" runat="server" BorderStyle="None"></asp:TextBox>
-                        </FooterTemplate>                        
+                            <asp:DropDownList ID="ddlSportart" runat="server" >
+                                <asp:ListItem Text="Fussball" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Handball" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Tennis" Value="2"></asp:ListItem>
+                            </asp:DropDownList>
+                        </FooterTemplate>
                         <ItemTemplate>
-                            <asp:TextBox ID="tbLiga" runat="server" Text='<%# Bind("Liga") %>'
-                                OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
+                            <asp:DropDownList ID="ddlSportart" runat="server" OnTextChanged="DropDownList_TextChanged" >
+                                <asp:ListItem Text="Fussball" Value="0"></asp:ListItem>
+                                <asp:ListItem Text="Handball" Value="1"></asp:ListItem>
+                                <asp:ListItem Text="Tennis" Value="2"></asp:ListItem>
+                            </asp:DropDownList>
                         </ItemTemplate>
                     </asp:TemplateField>
+
 
                 </Columns>
 
