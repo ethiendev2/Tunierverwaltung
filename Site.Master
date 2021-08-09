@@ -50,6 +50,8 @@
                     <li class="nav-item"><a class="nav-link" href="/FussballspielerView.aspx">Fussballspieler</a></li>
                     <li class="nav-item"><a class="nav-link" href="/MannschaftView.aspx">Mannschaftsverwaltung</a></li>
                     <li class="nav-item"><a class="nav-link" href="/PersonenView.aspx">Personenverwaltung</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/TunierView.aspx">Tunierverwaltung</a></li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdown04">Dropdown <span class="caret"></span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">

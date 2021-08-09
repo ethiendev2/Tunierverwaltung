@@ -157,6 +157,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="TunierView.aspx" />
     <Content Include="PersonenView.aspx" />
     <Content Include="MannschaftMitgliederView.aspx" />
     <Content Include="MannschaftView.aspx" />
@@ -244,8 +245,20 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controller\TunierController.cs" />
     <Compile Include="Controller\MannschaftController.cs" />
     <Compile Include="Controller\FussballspielerController.cs" />
+    <Compile Include="TunierView.aspx.cs">
+      <DependentUpon>TunierView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TunierView.aspx.designer.cs">
+      <DependentUpon>TunierView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DataMappers\SpielDataMapper.cs" />
+    <Compile Include="Model\DataMappers\TunierDataMapper.cs" />
+    <Compile Include="Model\Entity\Tunier\Spiel.cs" />
+    <Compile Include="Model\Entity\Tunier\Tunier.cs" />
     <Compile Include="PersonenView.aspx.cs">
       <DependentUpon>PersonenView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -288,10 +301,10 @@
     <Compile Include="Model\DataMappers\AbstractTeilnehmerDataMapper.cs" />
     <Compile Include="Model\DataMappers\AbstractDataMapper.cs" />
     <Compile Include="Model\DataMappers\FussballspielerDataMapper.cs" />
-    <Compile Include="Model\Entity\Mannschaften\Enums\Sportart.cs" />
+    <Compile Include="Model\Entity\Enums\Sportart.cs" />
     <Compile Include="Model\Entity\Mannschaften\Mannschaft.cs" />
     <Compile Include="Model\Entity\Personen\Fussballspieler.cs" />
-    <Compile Include="Model\Entity\Personen\Enums\PositionFussball.cs" />
+    <Compile Include="Model\Entity\Enums\PositionFussball.cs" />
     <Compile Include="Model\Entity\Personen\Teilnehmer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
