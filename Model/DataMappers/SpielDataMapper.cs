@@ -18,9 +18,76 @@ namespace Tunierverwaltung.Model.DataMappers
         private const string UPDATE_SPIEL = "UPDATE spiel set SpielID = @SpielID, TunierID = @TunierID, Mannschaft1ID = @Mannschaft1ID, Mannschaft1Punkte = @Mannschaft1Punkte, Mannschaft2ID = @Mannschaft2ID, Mannschaft2Punkte = @Mannschaft2Punkte where SpielID = @SpielID";
         private const string DELETE = "DELETE FROM spiel WHERE SpielID = @SpielID";
 
+        private const string GET_PUNKTE1 = "SELECT * FROM spiel where TunierID = @TunierID AND Mannschaft1ID = @Mannschaft1ID";
+        private const string GET_PUNKTE2 = "SELECT * FROM spiel where TunierID = @TunierID AND Mannschaft2ID = @Mannschaft2ID";
 
 
-        public new List<Spiel> GetAll()
+        public KeyValuePair<int, int> getRanking(int tunierid, int mannschaftID)
+        {
+            using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+
+
+                List<KeyValuePair<int, int>> ranking = new List<KeyValuePair<int, int>>();
+                KeyValuePair<int, int> rank = new KeyValuePair<int, int>();
+                int sum = 0;
+
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+
+                    command.CommandText = GET_PUNKTE1;
+                    command.Parameters.AddWithValue("@TunierID", tunierid);
+                    command.Parameters.AddWithValue("@Mannschaft1ID", mannschaftID);
+
+
+
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int punkte = (int)reader["Mannschaft1Punkte"];
+                            sum += punkte;
+                        }
+                    }
+
+                    reader.Close();
+
+                }
+
+                using (MySqlCommand command2 = connection.CreateCommand())
+                {
+                    command2.CommandType = System.Data.CommandType.Text;
+
+
+                    command2.CommandText = GET_PUNKTE2;
+                    command2.Parameters.AddWithValue("@TunierID", tunierid);
+                    command2.Parameters.AddWithValue("@Mannschaft2ID", mannschaftID);
+
+                    MySqlDataReader reader2 = command2.ExecuteReader();
+
+                    if (reader2.HasRows)
+                    {
+                        while (reader2.Read())
+                        {
+
+                            int punkte = (int)reader2["Mannschaft2Punkte"];
+                            sum += punkte;
+                        }
+
+                    }
+
+                    rank = new KeyValuePair<int, int>(mannschaftID, sum);
+
+                    return rank;
+                }
+            }
+        }
+
+        public List<Spiel> GetAll()
         {
             using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
             {

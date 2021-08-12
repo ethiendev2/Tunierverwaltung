@@ -157,8 +157,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="RankingTunierView.aspx" />
     <Content Include="TunierMannschaftenView.aspx" />
     <Content Include="SpieleverwaltungView.aspx" />
+    <Content Include="RankingView.aspx" />
     <Content Include="TunierSpieleView.aspx" />
     <Content Include="TunierView.aspx" />
     <Content Include="PersonenView.aspx" />
@@ -251,6 +253,13 @@
     <Compile Include="Controller\TunierController.cs" />
     <Compile Include="Controller\MannschaftController.cs" />
     <Compile Include="Controller\FussballspielerController.cs" />
+    <Compile Include="RankingTunierView.aspx.cs">
+      <DependentUpon>RankingTunierView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RankingTunierView.aspx.designer.cs">
+      <DependentUpon>RankingTunierView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TunierMannschaftenView.aspx.cs">
       <DependentUpon>TunierMannschaftenView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -264,6 +273,13 @@
     </Compile>
     <Compile Include="SpieleverwaltungView.aspx.designer.cs">
       <DependentUpon>SpieleverwaltungView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RankingView.aspx.cs">
+      <DependentUpon>RankingView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RankingView.aspx.designer.cs">
+      <DependentUpon>RankingView.aspx</DependentUpon>
     </Compile>
     <Compile Include="TunierSpieleView.aspx.cs">
       <DependentUpon>TunierSpieleView.aspx</DependentUpon>

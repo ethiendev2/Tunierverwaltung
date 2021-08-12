@@ -23,6 +23,7 @@ namespace Tunierverwaltung.Controller
         private TunierDataMapper _dataMapper;
         private SpielDataMapper spielDataMapper;
         private Tunier _currTunier;
+        private List<KeyValuePair<int, int>> _ranking;
         #endregion
 
         #region Modifier / Accessoren
@@ -32,6 +33,7 @@ namespace Tunierverwaltung.Controller
         public Tunier CurrTunier { get => _currTunier; set => _currTunier = value; }
         public TunierDataMapper DataMapper { get => _dataMapper; set => _dataMapper = value; }
         public SpielDataMapper SpielDataMapper { get => spielDataMapper; set => spielDataMapper = value; }
+        public List<KeyValuePair<int, int>> Ranking { get => _ranking; set => _ranking = value; }
 
         #endregion
 
@@ -51,6 +53,17 @@ namespace Tunierverwaltung.Controller
             DataMapper.CreateOrUpdate(t);
         }
 
+        public void GetRanking()
+        {
+            Ranking = new List<KeyValuePair<int, int>>();
+
+            foreach(Mannschaft m in CurrTunier.Mannschaften)
+            {
+                Ranking.Add(SpielDataMapper.getRanking(CurrTunier.TunierID, m.MannschaftID));
+            }
+
+            Ranking.Sort((pair1, pair2) => pair2.Value.CompareTo(pair1.Value));
+        }
         public void TunierEntfernen(int id)
         {
             DataMapper.Delete(id);
