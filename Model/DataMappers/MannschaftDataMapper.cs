@@ -147,6 +147,10 @@ namespace Tunierverwaltung.Model.DataMappers
                     {
                         command.Parameters.AddWithValue("@Typ", "Handballspieler");
                     }
+                    else if(Global.TeilnehmerController.Trainer.Exists(y => y.TeilnehmerID == teilnehmerid))
+                    {
+                        command.Parameters.AddWithValue("@Typ", "Trainer");
+                    }
                     else 
                     {
                         //teilnehmer not found
@@ -167,6 +171,7 @@ namespace Tunierverwaltung.Model.DataMappers
                 FussballspielerDataMapper fdm = new FussballspielerDataMapper();
                 TennisspielerDataMapper tdm = new TennisspielerDataMapper();
                 HandballspielerDataMapper hdm = new HandballspielerDataMapper();
+                TrainerDataMapper ttdm = new TrainerDataMapper();
 
                 connection.Open();
 
@@ -201,6 +206,10 @@ namespace Tunierverwaltung.Model.DataMappers
                                 case "Handballspieler":
                                     Handballspieler h = hdm.GetByTeilnehmerID(teilnehmerID);
                                     mitglieder.Add(h);
+                                    break;
+                                case "Trainer":
+                                    Trainer t2 = ttdm.GetByTeilnehmerID(teilnehmerID);
+                                    mitglieder.Add(t2);
                                     break;
                                 default:
                                     Console.WriteLine("Error");

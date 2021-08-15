@@ -157,6 +157,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="TrainerView.aspx" />
     <Content Include="HandballspielerView.aspx" />
     <Content Include="TennisspielerView.aspx" />
     <Content Include="RankingTunierView.aspx" />
@@ -255,6 +256,13 @@
     <Compile Include="Controller\TunierController.cs" />
     <Compile Include="Controller\MannschaftController.cs" />
     <Compile Include="Controller\TeilnehmerController.cs" />
+    <Compile Include="TrainerView.aspx.cs">
+      <DependentUpon>TrainerView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TrainerView.aspx.designer.cs">
+      <DependentUpon>TrainerView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HandballspielerView.aspx.cs">
       <DependentUpon>HandballspielerView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -262,8 +270,10 @@
     <Compile Include="HandballspielerView.aspx.designer.cs">
       <DependentUpon>HandballspielerView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\DataMappers\TrainerDataMapper.cs" />
     <Compile Include="Model\DataMappers\HandballspielerDataMapper.cs" />
     <Compile Include="Model\Entity\Enums\PositionHandball.cs" />
+    <Compile Include="Model\Entity\Personen\Trainer.cs" />
     <Compile Include="Model\Entity\Personen\Handballspieler.cs" />
     <Compile Include="TennisspielerView.aspx.cs">
       <DependentUpon>TennisspielerView.aspx</DependentUpon>

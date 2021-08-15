@@ -55,7 +55,10 @@ namespace Tunierverwaltung
             {
                 teilnehmer.Add(h);
             }
-
+            foreach(Trainer t2 in Global.TeilnehmerController.getAlleTrainer())
+            {
+                teilnehmer.Add(t2);
+            }
 
             return teilnehmer;
         }

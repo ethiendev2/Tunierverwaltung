@@ -118,6 +118,25 @@ namespace Tunierverwaltung
                 }
             }
 
+
+            foreach (Trainer t2 in Global.TeilnehmerController.getAlleTrainer())
+            {
+                bool exist = false;
+                foreach (Teilnehmer m in mitgieder)
+                {
+                    if (m.TeilnehmerID == t2.TeilnehmerID)
+                    {
+                        exist = true;
+                    }
+                }
+                if (exist)
+                { }
+                else
+                {
+                    teilnehmer.Add(t2);
+                }
+            }
+
             return teilnehmer;
         }
 
