@@ -59,6 +59,8 @@
                             <a class="dropdown-item" href="/TennisspielerView.aspx">Tennisspieler</a>
                             <a class="dropdown-item" href="/HandballspielerView.aspx">Handballspieler</a>
                             <a class="dropdown-item" href="/TrainerView.aspx">Trainer</a>
+                            <a class="dropdown-item" href="/PhysioView.aspx">Physio</a>
+
                         </div>
                     </li>
                 </ul>

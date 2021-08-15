@@ -151,6 +151,10 @@ namespace Tunierverwaltung.Model.DataMappers
                     {
                         command.Parameters.AddWithValue("@Typ", "Trainer");
                     }
+                    else if (Global.TeilnehmerController.Physio.Exists(y => y.TeilnehmerID == teilnehmerid))
+                    {
+                        command.Parameters.AddWithValue("@Typ", "Physio");
+                    }
                     else 
                     {
                         //teilnehmer not found
@@ -172,6 +176,7 @@ namespace Tunierverwaltung.Model.DataMappers
                 TennisspielerDataMapper tdm = new TennisspielerDataMapper();
                 HandballspielerDataMapper hdm = new HandballspielerDataMapper();
                 TrainerDataMapper ttdm = new TrainerDataMapper();
+                PhysioDataMapper pdm = new PhysioDataMapper();
 
                 connection.Open();
 
@@ -210,6 +215,10 @@ namespace Tunierverwaltung.Model.DataMappers
                                 case "Trainer":
                                     Trainer t2 = ttdm.GetByTeilnehmerID(teilnehmerID);
                                     mitglieder.Add(t2);
+                                    break;
+                                case "Physio":
+                                    Physio p = pdm.GetByTeilnehmerID(teilnehmerID);
+                                    mitglieder.Add(p);
                                     break;
                                 default:
                                     Console.WriteLine("Error");

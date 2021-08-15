@@ -59,7 +59,10 @@ namespace Tunierverwaltung
             {
                 teilnehmer.Add(t2);
             }
-
+            foreach(Physio p in Global.TeilnehmerController.getAllePhysio())
+            {
+                teilnehmer.Add(p);
+            }
             return teilnehmer;
         }
 

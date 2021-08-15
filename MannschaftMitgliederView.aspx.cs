@@ -137,6 +137,25 @@ namespace Tunierverwaltung
                 }
             }
 
+            foreach (Physio p in Global.TeilnehmerController.getAllePhysio())
+            {
+                bool exist = false;
+                foreach (Teilnehmer m in mitgieder)
+                {
+                    if (m.TeilnehmerID == p.TeilnehmerID)
+                    {
+                        exist = true;
+                    }
+                }
+                if (exist)
+                { }
+                else
+                {
+                    teilnehmer.Add(p);
+                }
+            }
+
+
             return teilnehmer;
         }
 
