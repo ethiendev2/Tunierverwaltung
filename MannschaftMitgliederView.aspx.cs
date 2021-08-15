@@ -155,6 +155,23 @@ namespace Tunierverwaltung
                 }
             }
 
+            foreach (Materialwart x in Global.TeilnehmerController.getAlleMaterialwart())
+            {
+                bool exist = false;
+                foreach (Teilnehmer m in mitgieder)
+                {
+                    if (m.TeilnehmerID == x.TeilnehmerID)
+                    {
+                        exist = true;
+                    }
+                }
+                if (exist)
+                { }
+                else
+                {
+                    teilnehmer.Add(x);
+                }
+            }
 
             return teilnehmer;
         }

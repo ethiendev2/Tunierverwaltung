@@ -157,6 +157,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="MaterialwartView.aspx" />
     <Content Include="PhysioView.aspx" />
     <Content Include="TrainerView.aspx" />
     <Content Include="HandballspielerView.aspx" />
@@ -257,8 +258,17 @@
     <Compile Include="Controller\TunierController.cs" />
     <Compile Include="Controller\MannschaftController.cs" />
     <Compile Include="Controller\TeilnehmerController.cs" />
+    <Compile Include="Model\DataMappers\MaterialwartDataMapper.cs" />
     <Compile Include="Model\DataMappers\PhysioDataMapper.cs" />
+    <Compile Include="Model\Entity\Personen\Materialwart.cs" />
     <Compile Include="Model\Entity\Personen\Physio.cs" />
+    <Compile Include="MaterialwartView.aspx.cs">
+      <DependentUpon>MaterialwartView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MaterialwartView.aspx.designer.cs">
+      <DependentUpon>MaterialwartView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PhysioView.aspx.cs">
       <DependentUpon>PhysioView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -63,6 +63,10 @@ namespace Tunierverwaltung
             {
                 teilnehmer.Add(p);
             }
+            foreach(Materialwart m in Global.TeilnehmerController.getAlleMaterialwart())
+            {
+                teilnehmer.Add(m);
+            }
             return teilnehmer;
         }
 

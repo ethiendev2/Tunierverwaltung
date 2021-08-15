@@ -32,6 +32,8 @@ namespace Tunierverwaltung.Controller
         private List<Physio> _physio;
         private PhysioDataMapper physioDataMapper;
 
+        private List<Materialwart> materialwart;
+        private MaterialwartDataMapper materialwartDataMapper;
         #endregion
 
         #region Modifier / Accessoren
@@ -45,6 +47,8 @@ namespace Tunierverwaltung.Controller
         public TrainerDataMapper TrainerDataMapper { get => trainerDataMapper; set => trainerDataMapper = value; }
         public PhysioDataMapper PhysioDataMapper { get => physioDataMapper; set => physioDataMapper = value; }
         public List<Physio> Physio { get => _physio; set => _physio = value; }
+        public List<Materialwart> Materialwart { get => materialwart; set => materialwart = value; }
+        public MaterialwartDataMapper MaterialwartDataMapper { get => materialwartDataMapper; set => materialwartDataMapper = value; }
 
 
         #endregion
@@ -58,6 +62,7 @@ namespace Tunierverwaltung.Controller
             HandballspielerDataMapper = new HandballspielerDataMapper();
             TrainerDataMapper = new TrainerDataMapper();
             PhysioDataMapper = new PhysioDataMapper();
+            MaterialwartDataMapper = new MaterialwartDataMapper();
         }
         #endregion
 
@@ -116,6 +121,17 @@ namespace Tunierverwaltung.Controller
         {
             Physio = PhysioDataMapper.GetAll();
             return Physio;
+        }
+
+        public void MaterialwartHinzufuegen(Materialwart m)
+        {
+            MaterialwartDataMapper.CreateOrUpdate(m);
+        }
+
+        public List<Materialwart> getAlleMaterialwart()
+        {
+            Materialwart = MaterialwartDataMapper.GetAll();
+            return Materialwart;
         }
         #endregion
     }
