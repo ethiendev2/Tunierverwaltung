@@ -64,7 +64,7 @@ namespace Tunierverwaltung
             List<Teilnehmer> mitgieder = Global.MannschaftController.CurrMannschaft.Mitglieder;
             List<Teilnehmer> teilnehmer = new List<Teilnehmer>();
 
-            foreach(Fussballspieler f in Global.FussballspielerController.getAllFussballspieler())
+            foreach(Fussballspieler f in Global.TeilnehmerController.getAllFussballspieler())
             {
                 bool exist = false;
                 foreach(Teilnehmer m in mitgieder)
@@ -78,6 +78,43 @@ namespace Tunierverwaltung
                 { }
                 else { 
                 teilnehmer.Add(f);
+                }
+            }
+
+            foreach (Tennisspieler t in Global.TeilnehmerController.getAlleTennisspeiler())
+            {
+                bool exist = false;
+                foreach (Teilnehmer m in mitgieder)
+                {
+                    if (m.TeilnehmerID == t.TeilnehmerID)
+                    {
+                        exist = true;
+                    }
+                }
+                if (exist)
+                { }
+                else
+                {
+                    teilnehmer.Add(t);
+                }
+            }
+
+
+            foreach (Handballspieler h in Global.TeilnehmerController.getAlleHandballspieler())
+            {
+                bool exist = false;
+                foreach (Teilnehmer m in mitgieder)
+                {
+                    if (m.TeilnehmerID == h.TeilnehmerID)
+                    {
+                        exist = true;
+                    }
+                }
+                if (exist)
+                { }
+                else
+                {
+                    teilnehmer.Add(h);
                 }
             }
 

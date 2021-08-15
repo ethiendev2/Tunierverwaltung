@@ -5,13 +5,11 @@ using System.Web;
 
 namespace Tunierverwaltung.Model.Entity.Enums
 {
-    public enum PositionFusball
+    public enum HauptHand
     {
-        Torwart,
-        Innenverteidiger,
-        Aussenverteidiger,
-        Mittelfeld,
-        Stuermer
+        Links,
+        Rechts,
+        Beide
     }
 }
 

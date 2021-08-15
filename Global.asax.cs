@@ -12,18 +12,18 @@ namespace Tunierverwaltung
 {
     public class Global : HttpApplication
     {
-        private static FussballspielerController _fussballspielerController;
+        private static TeilnehmerController teilnehmerController;
 
         private static TunierController _tunierController;
 
         private static MannschaftController _mannschaftController;
-        public static FussballspielerController FussballspielerController { get => _fussballspielerController; set => _fussballspielerController = value; }
+        public static TeilnehmerController TeilnehmerController { get => teilnehmerController; set => teilnehmerController = value; }
         public static MannschaftController MannschaftController { get => _mannschaftController; set => _mannschaftController = value; }
         public static TunierController TunierController { get => _tunierController; set => _tunierController = value; }
 
         public Global() : base()
         {
-            FussballspielerController = new FussballspielerController();
+            TeilnehmerController = new TeilnehmerController();
             MannschaftController = new MannschaftController();
             TunierController = new TunierController();
         }

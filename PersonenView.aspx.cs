@@ -43,10 +43,19 @@ namespace Tunierverwaltung
         {
             List<Teilnehmer> teilnehmer = new List<Teilnehmer>();
 
-            foreach(Fussballspieler f in Global.FussballspielerController.getAllFussballspieler())
+            foreach(Fussballspieler f in Global.TeilnehmerController.getAllFussballspieler())
             {
                 teilnehmer.Add(f);
             }
+            foreach (Tennisspieler t in Global.TeilnehmerController.getAlleTennisspeiler())
+            {
+                teilnehmer.Add(t);
+            }
+            foreach(Handballspieler h in Global.TeilnehmerController.getAlleHandballspieler())
+            {
+                teilnehmer.Add(h);
+            }
+
 
             return teilnehmer;
         }

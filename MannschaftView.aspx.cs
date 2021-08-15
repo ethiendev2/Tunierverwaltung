@@ -16,7 +16,9 @@ namespace Tunierverwaltung
 {
     public partial class MannschaftView : Page
     {
+
         bool[] rowChanged;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

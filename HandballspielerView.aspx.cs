@@ -13,13 +13,13 @@ using Tunierverwaltung.Model.Entity.Personen;
 
 namespace Tunierverwaltung
 {
-    public partial class FussballspielerView : Page
+    public partial class HandballspielerView : Page
     {
         bool[] rowChanged;
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            int totalRows = GridViewFussballspieler.Rows.Count;
+            int totalRows = GridViewHandballspieler.Rows.Count;
             rowChanged = new bool[totalRows];
 
             lblError.Visible = false;
@@ -39,21 +39,21 @@ namespace Tunierverwaltung
         public void setDropDownList()
         {
             // GridViewFussballspieler.Rows.Count
-            for (int i = 0; i < Global.TeilnehmerController.Fussballspieler.Count; i++)
+            for (int i = 0; i < Global.TeilnehmerController.Handballspieler.Count; i++)
             {
-                GridViewRow gvr = GridViewFussballspieler.Rows[i];
+                GridViewRow gvr = GridViewHandballspieler.Rows[i];
                 DropDownList ddl = (DropDownList)gvr.FindControl("ddlPosition");
                 ddl.ClearSelection();
-                string value = Global.TeilnehmerController.Fussballspieler[i].Position.ToString();
+                string value = Global.TeilnehmerController.Handballspieler[i].Position.ToString();
                 ddl.Items.FindByText(value).Selected = true;
 
             }
         }
         public void BindGrid()
         {
-            GridViewFussballspieler.DataSource = Global.TeilnehmerController.getAllFussballspieler();
-            EnsureGridViewFooter<Fussballspieler>(GridViewFussballspieler);
-            GridViewFussballspieler.DataBind();
+            GridViewHandballspieler.DataSource = Global.TeilnehmerController.getAlleHandballspieler();
+            EnsureGridViewFooter<Handballspieler>(GridViewHandballspieler);
+            GridViewHandballspieler.DataBind();
 
         }
 
@@ -83,7 +83,7 @@ namespace Tunierverwaltung
                 HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
                 int id = Convert.ToInt32(hf1.Value);
 
-                FussballspielerDataMapper x = new FussballspielerDataMapper();
+                HandballspielerDataMapper x = new HandballspielerDataMapper();
                 x.Delete(id);
 
                 BindGrid();
@@ -98,20 +98,19 @@ namespace Tunierverwaltung
 
                 try
                 {
-                    TextBox vorname = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbVorname");
-                    TextBox nachname = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbNachname");
-                    TextBox geburtstag = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbGeburtstag");
-                    DropDownList position = (DropDownList)GridViewFussballspieler.FooterRow.FindControl("ddlPosition");
-                    TextBox tore = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbTore");
-                    TextBox spiele = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbSpiele");
-
-                    PositionFusball pos;
-                    Enum.TryParse<PositionFusball>(position.Text, out pos);
+                    TextBox vorname = (TextBox)GridViewHandballspieler.FooterRow.FindControl("tbVorname");
+                    TextBox nachname = (TextBox)GridViewHandballspieler.FooterRow.FindControl("tbNachname");
+                    TextBox geburtstag = (TextBox)GridViewHandballspieler.FooterRow.FindControl("tbGeburtstag");
+                    DropDownList position = (DropDownList)GridViewHandballspieler.FooterRow.FindControl("ddlPosition");
 
 
-                    Fussballspieler f = new Fussballspieler(0, vorname.Text, nachname.Text, geburtstag.Text, 0, pos, Convert.ToInt32(tore.Text), Convert.ToInt32(spiele.Text));
+                    PositionHandball pos;
+                    Enum.TryParse<PositionHandball>(position.Text, out pos);
 
-                    Global.TeilnehmerController.FussballspielerHinzufuegen(f);
+
+                    Handballspieler h = new Handballspieler(0, vorname.Text, nachname.Text, geburtstag.Text, 0, pos);
+
+                    Global.TeilnehmerController.HandballspielerHinzufuegen(h);
 
                 } catch (Exception ex)
                 {
@@ -130,14 +129,14 @@ namespace Tunierverwaltung
         {
             if (Page.IsPostBack)
             {
-                int totalRows = GridViewFussballspieler.Rows.Count;
+                int totalRows = GridViewHandballspieler.Rows.Count;
                 for (int i = 0; i < totalRows; i++)
                 {
                     if(rowChanged[i])
                     {
                         try
                         {
-                            GridViewRow gvr = GridViewFussballspieler.Rows[i];
+                            GridViewRow gvr = GridViewHandballspieler.Rows[i];
                             HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
                             int id = Convert.ToInt32(hf1.Value);
 
@@ -151,27 +150,19 @@ namespace Tunierverwaltung
                             string gb = tbGeburtstag.Text;
 
                             DropDownList ddlPosition = (DropDownList)gvr.FindControl("ddlPosition");
-                            PositionFusball pos;
-                            Enum.TryParse<PositionFusball>(ddlPosition.Text, out pos);
-
-                            TextBox tbTore = (TextBox)gvr.FindControl("tbTore");
-                            int tore = Convert.ToInt32(tbTore.Text);
-
-                            TextBox tbSpiele = (TextBox)gvr.FindControl("tbSpiele");
-                            int spiele = Convert.ToInt32(tbSpiele.Text);
+                            PositionHandball pos;
+                            Enum.TryParse<PositionHandball>(ddlPosition.Text, out pos);
 
 
 
-                            Fussballspieler f = Global.TeilnehmerController.Fussballspieler.Find(x => x.TeilnehmerID == id);
+                            Handballspieler f = Global.TeilnehmerController.Handballspieler.Find(x => x.TeilnehmerID == id);
                             f.Vorname = vorname;
                             f.Nachname = nachname;
                             f.Geburtstag = gb;
                             f.Position = pos;
-                            f.Tore = tore;
-                            f.AnzahlSpiele = spiele;
 
 
-                            Global.TeilnehmerController.FussballspielerHinzufuegen(f);
+                            Global.TeilnehmerController.HandballspielerHinzufuegen(f);
 
                         } catch (Exception ex)
                         {

@@ -134,10 +134,18 @@ namespace Tunierverwaltung.Model.DataMappers
                     command.Parameters.AddWithValue("@MannschaftID", mannschaftid);
                     command.Parameters.AddWithValue("@TeilnehmerID", teilnehmerid);
 
-                    if (Global.FussballspielerController.Fussballspieler.Exists(y => y.TeilnehmerID == teilnehmerid))
+                    if (Global.TeilnehmerController.Fussballspieler.Exists(y => y.TeilnehmerID == teilnehmerid))
                     {
                         command.Parameters.AddWithValue("@Typ", "Fussballspieler");
 
+                    }
+                    else if (Global.TeilnehmerController.Tennisspieler.Exists(y => y.TeilnehmerID == teilnehmerid))
+                    {
+                        command.Parameters.AddWithValue("@Typ", "Tennisspieler");
+                    }
+                    else if (Global.TeilnehmerController.Handballspieler.Exists(y => y.TeilnehmerID == teilnehmerid))
+                    {
+                        command.Parameters.AddWithValue("@Typ", "Handballspieler");
                     }
                     else 
                     {
@@ -157,6 +165,8 @@ namespace Tunierverwaltung.Model.DataMappers
             using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
             {
                 FussballspielerDataMapper fdm = new FussballspielerDataMapper();
+                TennisspielerDataMapper tdm = new TennisspielerDataMapper();
+                HandballspielerDataMapper hdm = new HandballspielerDataMapper();
 
                 connection.Open();
 
@@ -183,6 +193,14 @@ namespace Tunierverwaltung.Model.DataMappers
                                 case "Fussballspieler":
                                     Fussballspieler s = fdm.GetByTeilnehmerID(teilnehmerID);
                                     mitglieder.Add(s);
+                                    break;
+                                case "Tennisspieler":
+                                    Tennisspieler t = tdm.GetByTeilnehmerID(teilnehmerID);
+                                    mitglieder.Add(t);
+                                    break;
+                                case "Handballspieler":
+                                    Handballspieler h = hdm.GetByTeilnehmerID(teilnehmerID);
+                                    mitglieder.Add(h);
                                     break;
                                 default:
                                     Console.WriteLine("Error");
