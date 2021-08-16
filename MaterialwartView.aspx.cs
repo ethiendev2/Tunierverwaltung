@@ -69,8 +69,7 @@ namespace Tunierverwaltung
                 HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
                 int id = Convert.ToInt32(hf1.Value);
 
-                MaterialwartDataMapper x = new MaterialwartDataMapper();
-                x.Delete(id);
+                Global.TeilnehmerController.TeilnehmerEntfernen(id);
 
                 BindGrid();
             }

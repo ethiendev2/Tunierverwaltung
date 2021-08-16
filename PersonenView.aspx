@@ -6,11 +6,9 @@
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
-        <div>
-            <asp:Label ID="Label1" runat="server" Visible="true">Personenuebersicht</asp:Label>
-        </div>
 
         <div>
+            <h1>Personeneverwaltung</h1>
             <asp:GridView ID="GridViewPersonen" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="false" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="TeilnehmerID">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Fussballspieler" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TunierView.aspx.cs" Inherits="Tunierverwaltung.TunierView" %>
+﻿<%@ Page Title="Tunier" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TunierView.aspx.cs" Inherits="Tunierverwaltung.TunierView" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -6,11 +6,9 @@
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
-        <div>
-            <asp:Label ID="Label1" runat="server" Visible="true">Mannschaftsverwaltung</asp:Label>
-        </div>
-        <div>
 
+        <div>
+            <h1> Tunier </h1>
             <asp:GridView ID="GridViewTunier" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="TunierID">

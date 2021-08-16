@@ -35,39 +35,8 @@ namespace Tunierverwaltung
         }
         public void BindGrid()
         {
-            GridViewPersonen.DataSource = alleTeilnehmer();
+            GridViewPersonen.DataSource = Global.TeilnehmerController.AlleTeilnehmer();
             GridViewPersonen.DataBind();
-        }
-
-        public List<Teilnehmer> alleTeilnehmer()
-        {
-            List<Teilnehmer> teilnehmer = new List<Teilnehmer>();
-
-            foreach(Fussballspieler f in Global.TeilnehmerController.getAllFussballspieler())
-            {
-                teilnehmer.Add(f);
-            }
-            foreach (Tennisspieler t in Global.TeilnehmerController.getAlleTennisspeiler())
-            {
-                teilnehmer.Add(t);
-            }
-            foreach(Handballspieler h in Global.TeilnehmerController.getAlleHandballspieler())
-            {
-                teilnehmer.Add(h);
-            }
-            foreach(Trainer t2 in Global.TeilnehmerController.getAlleTrainer())
-            {
-                teilnehmer.Add(t2);
-            }
-            foreach(Physio p in Global.TeilnehmerController.getAllePhysio())
-            {
-                teilnehmer.Add(p);
-            }
-            foreach(Materialwart m in Global.TeilnehmerController.getAlleMaterialwart())
-            {
-                teilnehmer.Add(m);
-            }
-            return teilnehmer;
         }
 
     }

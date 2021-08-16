@@ -6,11 +6,9 @@
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
+        <h1>Mannschaft</h1>
         <div>
-            <asp:Label ID="Label1" runat="server" Visible="true">Mitglieder anpassen</asp:Label>
-        </div>
-        <div>
-             <asp:Table ID="tblMannschaft" runat="server" Width="100%"> 
+             <asp:Table ID="tblMannschaft" runat="server" Width="100%" BackColor="#ffffff" BorderColor="#000000" Font-Size="Large" BorderStyle="Solid"> 
             <asp:TableRow>
                 <asp:TableCell>Name</asp:TableCell>
                 <asp:TableCell>Sitz</asp:TableCell>
@@ -20,10 +18,9 @@
         </asp:Table>  
         </div>
 
-
-        <div>
-            <asp:Label ID="Label2" runat="server" Visible="true">Mitglieder</asp:Label>
-        </div>
+        <br />
+        <h1>Mitglieder in Mannschaft</h1>
+       
         <div>
             <asp:GridView ID="GridViewMitglieder" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="false" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
@@ -69,9 +66,8 @@
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
             </asp:GridView>
         </div>
-        <div>
-            <asp:Label ID="Label3" runat="server" Visible="true">Teilnehmer</asp:Label>
-        </div>
+        <br />
+        <h1>Mitglieder hinzufuegen</h1>
 
          <div>
             <asp:GridView ID="GridViewTeilnehmer" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="false" ShowHeaderWhenEmpty="true"

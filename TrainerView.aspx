@@ -8,7 +8,7 @@
     <body>
 
         <div>
-
+            <h1> Trainer </h1>
             <asp:GridView ID="GridViewTrainer" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="TrainerID">

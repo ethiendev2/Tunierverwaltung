@@ -6,11 +6,9 @@
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
+        <h1> Tunier Mannschaften </h1>
         <div>
-            <asp:Label ID="Label1" runat="server" Visible="true">Tunier Mannschaften verwalten</asp:Label>
-        </div>
-        <div>
-             <asp:Table ID="tblTunier" runat="server" Width="100%"> 
+             <asp:Table ID="tblTunier" runat="server" Width="100%"  BackColor="#ffffff" BorderColor="#000000" Font-Size="Large" BorderStyle="Solid"> 
             <asp:TableRow>
                 <asp:TableCell>Name</asp:TableCell>
                 <asp:TableCell>Ort</asp:TableCell>
@@ -19,12 +17,8 @@
             </asp:TableRow>
         </asp:Table>  
         </div>
-
-
         <div>
-            <asp:Label ID="Label2" runat="server" Visible="true">Mannschaften im Tunier</asp:Label>
-        </div>
-        <div>
+            <h1> Mannschaften entfernen </h1>
             <asp:GridView ID="GridViewMannschaften" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="false" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">
@@ -76,11 +70,9 @@
                 <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
             </asp:GridView>
         </div>
-        <div>
-            <asp:Label ID="Label3" runat="server" Visible="true">Übersicht Mannschaften</asp:Label>
-        </div>
 
         <div>
+            <h1> Mannschaft hinzufuegen </h1>
             <asp:GridView ID="GridViewMannschaftenOverview" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">

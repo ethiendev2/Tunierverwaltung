@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Fussballspieler" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TennisspielerView.aspx.cs" Inherits="Tunierverwaltung.TennisspielerView" %>
+﻿<%@ Page Title="Tennisspieler" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TennisspielerView.aspx.cs" Inherits="Tunierverwaltung.TennisspielerView" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -8,7 +8,7 @@
     <body>
 
         <div>
-
+               <h1> Tennisspieler </h1>
             <asp:GridView ID="GridViewTennisspieler" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="TennisspielerID">

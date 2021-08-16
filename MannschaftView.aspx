@@ -7,10 +7,7 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
         <div>
-            <asp:Label ID="Label1" runat="server" Visible="true">Mannschaftsverwaltung</asp:Label>
-        </div>
-        <div>
-
+            <h1>Mannschaftsverwaltung</h1>
             <asp:GridView ID="GridViewMannschaft" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">

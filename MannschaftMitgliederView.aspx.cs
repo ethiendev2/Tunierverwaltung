@@ -55,7 +55,8 @@ namespace Tunierverwaltung
 
         public void BindGridTeilnehmer()
         {
-            GridViewTeilnehmer.DataSource = alleTeilnehmer();
+            Global.MannschaftController.GetTeilnehmerNotInCurrent();
+            GridViewTeilnehmer.DataSource = Global.MannschaftController.NotInCurrent;
             GridViewTeilnehmer.DataBind();
         }
 

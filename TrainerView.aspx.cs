@@ -83,8 +83,7 @@ namespace Tunierverwaltung
                 HiddenField hf1 = (HiddenField)gvr.FindControl("HiddenField1");
                 int id = Convert.ToInt32(hf1.Value);
 
-                TrainerDataMapper x = new TrainerDataMapper();
-                x.Delete(id);
+                Global.TeilnehmerController.TeilnehmerEntfernen(id);
 
                 BindGrid();
                 setDropDownList();
