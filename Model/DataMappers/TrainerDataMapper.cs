@@ -1,4 +1,10 @@
-﻿using System;
+﻿// Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        TrainerDataMapper.cs
+//Datum:        05.08.2021
+//Beschreibung: DataMapper für Trainer
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

@@ -1,4 +1,13 @@
-﻿using System;
+﻿//Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        SpieleverwaltungView.aspx.cs
+//Datum:        05.08.2021
+//Beschreibung: View für das Anlegen von Spielen
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

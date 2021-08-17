@@ -9,7 +9,7 @@
 
         <div>
             <h1> Tunier Spiele</h1>
-            <asp:GridView ID="GridViewTunier" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewTunier" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="TunierID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />

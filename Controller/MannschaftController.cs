@@ -1,8 +1,8 @@
 ﻿//Autor:        Henk Roberg
 //Klasse:       IA119
-//Datei:        FussballmannschaftController.cs
+//Datei:        MannschaftController.cs
 //Datum:        27.06.2021
-//Beschreibung: Klasse FussballmannschaftController
+//Beschreibung: Klasse MannschaftController
 using System;
 using System.Collections.Generic;
 using System.Linq;

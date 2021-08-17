@@ -1,4 +1,10 @@
-﻿using MySql.Data.MySqlClient;
+﻿// Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        TunierDataMapper.cs
+//Datum:        05.08.2021
+//Beschreibung: DataMapper für Tuniere
+
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using Tunierverwaltung.Model.Entity.Enums;

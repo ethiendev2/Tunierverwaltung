@@ -1,4 +1,10 @@
-﻿using System;
+﻿// Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        AbstractTeilnehmerDataMapper.cs
+//Datum:        05.08.2021
+//Beschreibung: Abstrake Basisklasse für alle Teilnehmer Data Mapper, Implementationen für Delete und Create/Update für die Teilnehmer Tabelle
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

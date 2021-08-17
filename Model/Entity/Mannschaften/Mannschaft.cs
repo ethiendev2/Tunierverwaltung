@@ -2,7 +2,7 @@
 //Klasse:       IA119
 //Datei:        Mannschaft.cs
 //Datum:        05.08.2021
-//Beschreibung: Abstrakte Basisklasse Mannschaft
+//Beschreibung: Klasse Mannschaft
 
 using System;
 using System.Collections.Generic;

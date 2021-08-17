@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        FussballspielerDataMapper.cs
+//Datum:        05.08.2021
+//Beschreibung: DataMapper für Fussballspieler
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,8 +18,8 @@ namespace Tunierverwaltung.Model.DataMappers
 
         private const string SELECT = "select * from fussballspieler f join teilnehmer t on f.TeilnehmerID = t.TeilnehmerID where f.FussballspielerID = @FussballspielerID";
         private const string SELECT_BY_TEILNEHMERID = "select * from fussballspieler f join teilnehmer t on f.TeilnehmerID = t.TeilnehmerID where f.TeilnehmerID = @TeilnehmerID";
-        private const string CREATE_FUSSBALLSPIELER = "insert into fussballspieler values (null, @TeilnehmerID, @Position, @Tore, @AnzahlSpiele)";
-        private const string UPDATE_FUSSBALLSPIELER = "UPDATE fussballspieler set FussballspielerID = @FussballspielerID, TeilnehmerID = @TeilnehmerID, Position = @Position, Tore = @Tore, AnzahlSpiele = @AnzahlSpiele WHERE FussballspielerID = @FussballspielerID";
+        private const string CREATE_FUSSBALLSPIELER = "insert into fussballspieler values (null, @TeilnehmerID, @Position)";
+        private const string UPDATE_FUSSBALLSPIELER = "UPDATE fussballspieler set FussballspielerID = @FussballspielerID, TeilnehmerID = @TeilnehmerID, Position = @Position WHERE FussballspielerID = @FussballspielerID";
         private const string SELECT_ALL = "SELECT * FROM fussballspieler f join teilnehmer t on f.TeilnehmerID = t.TeilnehmerID";
 
         
@@ -49,10 +54,9 @@ namespace Tunierverwaltung.Model.DataMappers
                             string position = (string)reader["Position"];
                             PositionFusball pos;
                             Enum.TryParse<PositionFusball>(position, out pos);
-                            int tore = (int)reader["Tore"];
-                            int spiele = (int)reader["AnzahlSpiele"];
+ 
 
-                            spieler.Add(new Fussballspieler(teilnehmerid, vorname, nachname, gb, fussballspielerID, pos, tore, spiele));
+                            spieler.Add(new Fussballspieler(teilnehmerid, vorname, nachname, gb, fussballspielerID, pos));
 
                         }
                     }
@@ -89,10 +93,8 @@ namespace Tunierverwaltung.Model.DataMappers
                         string position = (string)reader["Position"];
                         PositionFusball pos;
                         Enum.TryParse<PositionFusball>(position, out pos);
-                        int tore = (int)reader["Tore"];
-                        int spiele = (int)reader["AnzahlSpiele"];
 
-                        return new Fussballspieler(teilnehmerID, vorname, nachname, gb, id, pos, tore, spiele);
+                        return new Fussballspieler(teilnehmerID, vorname, nachname, gb, id, pos);
 
                     }
                 }
@@ -128,10 +130,8 @@ namespace Tunierverwaltung.Model.DataMappers
                         string position = (string)reader["Position"];
                         PositionFusball pos;
                         Enum.TryParse<PositionFusball>(position, out pos);
-                        int tore = (int)reader["Tore"];
-                        int spiele = (int)reader["AnzahlSpiele"];
 
-                        return new Fussballspieler(teilnehmerID, vorname, nachname, gb, id, pos, tore, spiele);
+                        return new Fussballspieler(teilnehmerID, vorname, nachname, gb, id, pos);
 
                     }
                 }
@@ -154,8 +154,6 @@ namespace Tunierverwaltung.Model.DataMappers
                         command.CommandText = CREATE_FUSSBALLSPIELER;
                         command.Parameters.AddWithValue("@TeilnehmerID", f.TeilnehmerID);
                         command.Parameters.AddWithValue("@Position", f.Position.ToString());
-                        command.Parameters.AddWithValue("@Tore", f.Tore);
-                        command.Parameters.AddWithValue("@AnzahlSpiele", f.AnzahlSpiele);
                         command.ExecuteNonQuery();
                         f.FussballspielerID = Convert.ToInt32(command.LastInsertedId);
                     }
@@ -165,8 +163,6 @@ namespace Tunierverwaltung.Model.DataMappers
                         command.Parameters.AddWithValue("@FussballspielerID", f.FussballspielerID);
                         command.Parameters.AddWithValue("@TeilnehmerID", f.TeilnehmerID);
                         command.Parameters.AddWithValue("@Position", f.Position.ToString());
-                        command.Parameters.AddWithValue("@Tore", f.Tore);
-                        command.Parameters.AddWithValue("@AnzahlSpiele", f.AnzahlSpiele);
                         command.ExecuteNonQuery();
                     }
                 }

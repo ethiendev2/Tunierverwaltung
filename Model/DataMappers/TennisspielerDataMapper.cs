@@ -1,4 +1,10 @@
-﻿using System;
+﻿// Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        TennisspielerDataMapper.cs
+//Datum:        05.08.2021
+//Beschreibung: DataMapper für Tennisspieler
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -154,7 +160,7 @@ namespace Tunierverwaltung.Model.DataMappers
                     else
                     {
                         command.CommandText = UPDATE_TENNISSPIELER;
-                        command.Parameters.AddWithValue("@FussballspielerID", f.TennisspielerID);
+                        command.Parameters.AddWithValue("@TennisspielerID", f.TennisspielerID);
                         command.Parameters.AddWithValue("@TeilnehmerID", f.TeilnehmerID);
                         command.Parameters.AddWithValue("@Hand", f.Hand.ToString());
                         command.ExecuteNonQuery();

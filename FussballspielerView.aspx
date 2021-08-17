@@ -10,7 +10,7 @@
         <div>
             <h1>Fussballspieler</h1>
 
-            <asp:GridView ID="GridViewFussballspieler" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewFussballspieler" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="FussballspielerID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
@@ -67,26 +67,6 @@
                                 <asp:ListItem Text="Mittelfeld" Value="3"></asp:ListItem>
                                 <asp:ListItem Text="Stuermer" Value="4"></asp:ListItem>
                             </asp:DropDownList>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="Tore" SortExpression="Tore">
-                        <FooterTemplate>
-                            <asp:TextBox ID="tbTore" runat="server" BorderStyle="None"></asp:TextBox>
-                        </FooterTemplate>                        
-                        <ItemTemplate>
-                            <asp:TextBox ID="tbTore" runat="server" Text='<%# Bind("Tore") %>'
-                                OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
-                        </ItemTemplate>
-                    </asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="Anzahl Spiele" SortExpression="Anzahl Spiele">
-                        <FooterTemplate>
-                            <asp:TextBox ID="tbSpiele" runat="server" BorderStyle="None"></asp:TextBox>
-                        </FooterTemplate>                        
-                        <ItemTemplate>
-                            <asp:TextBox ID="tbSpiele" runat="server" Text='<%# Bind("AnzahlSpiele") %>'
-                                OnTextChanged="TextBox_TextChanged" BorderStyle="None"></asp:TextBox>
                         </ItemTemplate>
                     </asp:TemplateField>
 

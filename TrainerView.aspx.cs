@@ -1,4 +1,13 @@
-﻿using System;
+﻿//Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        TrainerView.aspx.cs
+//Datum:        05.08.2021
+//Beschreibung: View für das Anlegen von Trainern
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

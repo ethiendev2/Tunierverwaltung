@@ -1,4 +1,11 @@
-﻿using System;
+﻿//Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        PersonenView.aspx.cs
+//Datum:        05.08.2021
+//Beschreibung: View für Übersicht über alle Teilnehmer
+
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

@@ -2,7 +2,7 @@
 //Klasse:       IA119
 //Datei:        Tunier.cs
 //Datum:        05.08.2021
-//Beschreibung:  Basisklasse Tunier
+//Beschreibung:  Klasse Tunier
 
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,10 @@
-﻿using System;
+﻿//Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        FussballspielerView.aspx.cs
+//Datum:        05.08.2021
+//Beschreibung: View für Fussballspieler
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -101,14 +107,12 @@ namespace Tunierverwaltung
                     TextBox nachname = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbNachname");
                     TextBox geburtstag = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbGeburtstag");
                     DropDownList position = (DropDownList)GridViewFussballspieler.FooterRow.FindControl("ddlPosition");
-                    TextBox tore = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbTore");
-                    TextBox spiele = (TextBox)GridViewFussballspieler.FooterRow.FindControl("tbSpiele");
 
                     PositionFusball pos;
                     Enum.TryParse<PositionFusball>(position.Text, out pos);
 
 
-                    Fussballspieler f = new Fussballspieler(0, vorname.Text, nachname.Text, geburtstag.Text, 0, pos, Convert.ToInt32(tore.Text), Convert.ToInt32(spiele.Text));
+                    Fussballspieler f = new Fussballspieler(0, vorname.Text, nachname.Text, geburtstag.Text, 0, pos);
 
                     Global.TeilnehmerController.FussballspielerHinzufuegen(f);
 
@@ -153,12 +157,6 @@ namespace Tunierverwaltung
                             PositionFusball pos;
                             Enum.TryParse<PositionFusball>(ddlPosition.Text, out pos);
 
-                            TextBox tbTore = (TextBox)gvr.FindControl("tbTore");
-                            int tore = Convert.ToInt32(tbTore.Text);
-
-                            TextBox tbSpiele = (TextBox)gvr.FindControl("tbSpiele");
-                            int spiele = Convert.ToInt32(tbSpiele.Text);
-
 
 
                             Fussballspieler f = Global.TeilnehmerController.Fussballspieler.Find(x => x.TeilnehmerID == id);
@@ -166,8 +164,6 @@ namespace Tunierverwaltung
                             f.Nachname = nachname;
                             f.Geburtstag = gb;
                             f.Position = pos;
-                            f.Tore = tore;
-                            f.AnzahlSpiele = spiele;
 
 
                             Global.TeilnehmerController.FussballspielerHinzufuegen(f);

@@ -9,7 +9,7 @@
 
         <div>
             <h1>Handballspieler</h1>
-            <asp:GridView ID="GridViewHandballspieler" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewHandballspieler" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="HandballspielerID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />

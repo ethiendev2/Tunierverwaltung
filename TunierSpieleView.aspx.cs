@@ -1,4 +1,13 @@
-﻿using System;
+﻿//Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        TunierSpieleView.aspx.cs
+//Datum:        05.08.2021
+//Beschreibung: View für die Spiele in einem Tunier
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MySql.Data.MySqlClient;
-using Tunierverwaltung.Model.Entity.Enums;
+﻿// Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        AbstractDataMapper.cs
+//Datum:        05.08.2021
+//Beschreibung: Abstrake Basisklasse für alle DataMapper
+
 
 namespace Tunierverwaltung.Model.DataMappers
 {

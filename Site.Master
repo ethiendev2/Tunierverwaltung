@@ -46,7 +46,6 @@
             </button>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a class="nav-link" href="/Default.aspx">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/MannschaftView.aspx">Mannschaftsverwaltung</a></li>
                     <li class="nav-item"><a class="nav-link" href="/PersonenView.aspx">Personenverwaltung</a></li>
                     <li class="nav-item"><a class="nav-link" href="/TunierView.aspx">Tunierverwaltung</a></li>

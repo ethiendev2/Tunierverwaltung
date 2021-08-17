@@ -9,7 +9,7 @@
 
         <div>
             <h1>Personeneverwaltung</h1>
-            <asp:GridView ID="GridViewPersonen" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="false" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewPersonen" runat="server" AutoGenerateColumns="False" ShowFooter="false" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="TeilnehmerID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />

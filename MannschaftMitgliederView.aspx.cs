@@ -1,4 +1,10 @@
-﻿using System;
+﻿//Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        MannschaftMitgliederView.aspx.cs
+//Datum:        05.08.2021
+//Beschreibung: View für für die Mitglieder einer Mannschaft
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

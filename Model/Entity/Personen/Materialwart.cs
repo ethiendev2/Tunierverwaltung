@@ -1,7 +1,7 @@
 ﻿//Autor:        Henk Roberg
 //Klasse:       IA119
 //Datei:        Materialwart.cs
-//Datum:        27.06.2021
+//Datum:        27.07.2021
 //Beschreibung: Klasse Materialwart
 using System;
 using System.Collections.Generic;

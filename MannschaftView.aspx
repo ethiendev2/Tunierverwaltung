@@ -8,7 +8,7 @@
     <body>
         <div>
             <h1>Mannschaftsverwaltung</h1>
-            <asp:GridView ID="GridViewMannschaft" runat="server" AllowPaging="True" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewMannschaft" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />

@@ -1,4 +1,9 @@
-﻿using MySql.Data.MySqlClient;
+﻿// Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        MannschaftDataMapper.cs
+//Datum:        05.08.2021
+//Beschreibung: DataMapper für Mannschaften
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using Tunierverwaltung.Model.Entity.Enums;
@@ -155,6 +160,10 @@ namespace Tunierverwaltung.Model.DataMappers
                     {
                         command.Parameters.AddWithValue("@Typ", "Physio");
                     }
+                    else if(Global.TeilnehmerController.Materialwart.Exists(y => y.TeilnehmerID == teilnehmerid))
+                    {
+                        command.Parameters.AddWithValue("@Typ", "Materialwart");
+                    }
                     else 
                     {
                         //teilnehmer not found
@@ -177,6 +186,7 @@ namespace Tunierverwaltung.Model.DataMappers
                 HandballspielerDataMapper hdm = new HandballspielerDataMapper();
                 TrainerDataMapper ttdm = new TrainerDataMapper();
                 PhysioDataMapper pdm = new PhysioDataMapper();
+                MaterialwartDataMapper mdm = new MaterialwartDataMapper();
 
                 connection.Open();
 
@@ -219,6 +229,10 @@ namespace Tunierverwaltung.Model.DataMappers
                                 case "Physio":
                                     Physio p = pdm.GetByTeilnehmerID(teilnehmerID);
                                     mitglieder.Add(p);
+                                    break;
+                                case "Materialwart":
+                                    Materialwart m = mdm.GetByTeilnehmerID(teilnehmerID);
+                                    mitglieder.Add(m);
                                     break;
                                 default:
                                     Console.WriteLine("Error");

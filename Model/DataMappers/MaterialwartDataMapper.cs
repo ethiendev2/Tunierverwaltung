@@ -1,4 +1,10 @@
-﻿using System;
+﻿// Autor:        Henk Roberg
+//Klasse:       IA119
+//Datei:        MaterialwartDataMapper.cs
+//Datum:        05.08.2021
+//Beschreibung: DataMapper für Materialwarte
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

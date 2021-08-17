@@ -1,7 +1,7 @@
 ﻿//Autor:        Henk Roberg
 //Klasse:       IA119
 //Datei:        Trainer.cs
-//Datum:        27.06.2021
+//Datum:        27.07.2021
 //Beschreibung: Klasse Trainer
 using System;
 using System.Collections.Generic;
