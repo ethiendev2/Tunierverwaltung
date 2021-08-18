@@ -423,6 +423,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
