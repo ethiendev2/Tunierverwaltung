@@ -258,8 +258,10 @@
     <Compile Include="Controller\TunierController.cs" />
     <Compile Include="Controller\MannschaftController.cs" />
     <Compile Include="Controller\TeilnehmerController.cs" />
+    <Compile Include="Controller\UserController.cs" />
     <Compile Include="Model\DataMappers\MaterialwartDataMapper.cs" />
     <Compile Include="Model\DataMappers\PhysioDataMapper.cs" />
+    <Compile Include="Model\DataMappers\UserDataMapper.cs" />
     <Compile Include="Model\Entity\Personen\Materialwart.cs" />
     <Compile Include="Model\Entity\Personen\Physio.cs" />
     <Compile Include="MaterialwartView.aspx.cs">
@@ -269,6 +271,8 @@
     <Compile Include="MaterialwartView.aspx.designer.cs">
       <DependentUpon>MaterialwartView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Entity\User\Role.cs" />
+    <Compile Include="Model\Entity\User\User.cs" />
     <Compile Include="PhysioView.aspx.cs">
       <DependentUpon>PhysioView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

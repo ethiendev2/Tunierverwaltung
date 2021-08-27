@@ -17,15 +17,19 @@ namespace Tunierverwaltung
         private static TunierController _tunierController;
 
         private static MannschaftController _mannschaftController;
+
+        private static UserController userController;
         public static TeilnehmerController TeilnehmerController { get => teilnehmerController; set => teilnehmerController = value; }
         public static MannschaftController MannschaftController { get => _mannschaftController; set => _mannschaftController = value; }
         public static TunierController TunierController { get => _tunierController; set => _tunierController = value; }
+        public static UserController UserController { get => userController; set => userController = value; }
 
         public Global() : base()
         {
             TeilnehmerController = new TeilnehmerController();
             MannschaftController = new MannschaftController();
             TunierController = new TunierController();
+            UserController = new UserController();
         }
         void Application_Start(object sender, EventArgs e)
         {
