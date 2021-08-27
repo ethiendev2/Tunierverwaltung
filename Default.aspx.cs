@@ -13,8 +13,7 @@ namespace Tunierverwaltung
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            TeilnehmerController c = new TeilnehmerController();
-            //c.test();
+
         }
     }
 }
