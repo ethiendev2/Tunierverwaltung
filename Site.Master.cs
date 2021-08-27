@@ -12,6 +12,7 @@ namespace Tunierverwaltung
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            adminpage.Visible = Global.UserController.isAdmin();
         }
     }
 }

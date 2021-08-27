@@ -24,7 +24,7 @@
     <asp:Button runat="server" ID="btnAnmelden" Text="Anmelden" OnClick="btnAnmelden_Click" CssClass="btn-primary" />
     <asp:Button runat="server" ID="btnAbmelden" Text="Abmelden" OnClick="btnAbmelden_Click" CssClass="btn-primary" />
 
-        <br />
+    <br />
 
     <asp:Label runat="server" ID="lblError" visible="false"></asp:Label>
 

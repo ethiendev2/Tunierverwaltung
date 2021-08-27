@@ -22,9 +22,45 @@ namespace Tunierverwaltung.Model.DataMappers
         private const string CREATE_USER = "insert into user values (@Username, @Password, @Role)";
         private const string GET_USER = "select * from user where Username = @Username";
         private const string SELECT_PW = "select Password from user where Username = @Username";
+        private const string GET_ALL = "Select * from user";
+        private const string UPDATE_PASSWORD = "UPDATE user set Password = @Password WHERE Username = @Username";
+        private const string UPDATE_ROLE = "UPDATE user set Role = @Role WHERE Username = @Username";
 
-        private const string UPDATE_USER = "UPDATE user set Password = @Password, Role = @Role WHERE Username = @Username";
 
+
+        public List<User> GetAllUser()
+        {
+            using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+
+                    command.CommandText = GET_ALL;
+
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    List<User> user = new List<User>();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string username = (string)reader["Username"];
+                            //Logic for mapping String to Enum
+                            string role = (string)reader["Role"];
+                            Role r;
+                            Enum.TryParse<Role>(role, out r);
+
+                            user.Add(new User(username, r));
+                        }
+                    }
+                    return user;
+                }
+            }
+        }
 
         public User GetByName(string username)
         {
@@ -139,7 +175,7 @@ namespace Tunierverwaltung.Model.DataMappers
             }
         }
 
-        public void UpdateUser(string username, string password, Role role)
+        public void UpdatePassword(string username, string password)
         {
             using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
             {
@@ -148,9 +184,26 @@ namespace Tunierverwaltung.Model.DataMappers
                 using (MySqlCommand command = connection.CreateCommand())
                 {
                     command.CommandType = System.Data.CommandType.Text;
-                    command.CommandText = UPDATE_USER;
+                    command.CommandText = UPDATE_PASSWORD;
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Password", password);
+                    command.ExecuteNonQuery();
+
+                }
+            }
+        }
+
+        public void UpdateRole(string username, Role role)
+        {
+            using (MySqlConnection connection = new MySqlConnection(CONNECTION_STRING))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = UPDATE_ROLE;
+                    command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Role", role.ToString());
                     command.ExecuteNonQuery();
 
