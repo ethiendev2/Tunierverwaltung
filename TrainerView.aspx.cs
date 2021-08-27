@@ -28,6 +28,17 @@ namespace Tunierverwaltung
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (Global.UserController.isGuest())
+            {
+                btnUpdate.Visible = false;
+                GridViewTrainer.ShowFooter = false;
+            }
+            else
+            {
+                btnUpdate.Visible = true;
+                GridViewTrainer.ShowFooter = true;
+            }
+
             int totalRows = GridViewTrainer.Rows.Count;
             rowChanged = new bool[totalRows];
 
@@ -213,6 +224,16 @@ namespace Tunierverwaltung
                 if (e.Row.DataItem == (object)blankItem)
                     e.Row.Visible = false;
             };
+        }
+
+        protected void GridViewTrainer_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (Global.UserController.User.Role == Role.Guest)
+            {
+                int row = e.Row.Cells.Count - 1;
+                e.Row.Cells[row].Visible = false;
+
+            }
         }
     }
 }

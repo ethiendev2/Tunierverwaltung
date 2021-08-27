@@ -9,7 +9,7 @@
 
         <div>
             <h1> Tunier </h1>
-            <asp:GridView ID="GridViewTunier" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewTunier" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridViewTunier_RowDataBound" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="TunierID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
@@ -78,10 +78,12 @@
                             <asp:Button runat="server" ID="btnHinzufuegen" Text="Hinzufuegen" OnClick="btnHinzufuegen_Click" CssClass="btn-success"/>
                         </FooterTemplate>
                     </asp:TemplateField>
+                    </Columns>
+                <Columns>
                     <asp:TemplateField>
                         <HeaderTemplate>Mitglieder</HeaderTemplate>
                         <ItemTemplate>
-                            <asp:Button runat="server" ID="btnMannschaften" Text="Mannschaften Editieren" OnClick="btnMannschaften_Click" CssClass="btn-primary" />
+                            <asp:Button runat="server" ID="btnMannschaften" Text="Mannschaften" OnClick="btnMannschaften_Click" CssClass="btn-primary" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

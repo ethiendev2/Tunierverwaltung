@@ -25,11 +25,17 @@ namespace Tunierverwaltung
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            int totalRows = GridViewFussballspieler.Rows.Count;
-            rowChanged = new bool[totalRows];
 
-            lblError.Visible = false;
-
+            if (Global.UserController.isGuest())
+            {
+                btnUpdate.Visible = false;
+                GridViewFussballspieler.ShowFooter = false;
+            }
+            else
+            {
+                btnUpdate.Visible = true;
+                GridViewFussballspieler.ShowFooter = true;
+            }
 
             if (!Page.IsPostBack)
             {
@@ -39,6 +45,12 @@ namespace Tunierverwaltung
                 setDropDownList();
             }
 
+
+
+            int totalRows = GridViewFussballspieler.Rows.Count;
+            rowChanged = new bool[totalRows];
+
+            lblError.Visible = false;
 
         }
 
@@ -204,6 +216,18 @@ namespace Tunierverwaltung
                 if (e.Row.DataItem == (object)blankItem)
                     e.Row.Visible = false;
             };
+        }
+
+        protected void GridViewFussballspieler_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (Global.UserController.User.Role == Role.Guest)
+            {
+                int row = e.Row.Cells.Count - 1;
+                e.Row.Cells[row].Visible = false;
+
+                btnUpdate.Visible = false;        
+            }
+
         }
     }
 }

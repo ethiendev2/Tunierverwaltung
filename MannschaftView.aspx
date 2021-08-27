@@ -8,7 +8,7 @@
     <body>
         <div>
             <h1>Mannschaftsverwaltung</h1>
-            <asp:GridView ID="GridViewMannschaft" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewMannschaft" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridViewMannschaft_RowDataBound" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
@@ -77,10 +77,12 @@
                             <asp:Button runat="server" ID="btnHinzufuegen" Text="Hinzufuegen" OnClick="btnHinzufuegen_Click" CssClass="btn-success"/>
                         </FooterTemplate>
                     </asp:TemplateField>
+                </Columns>
+                <Columns>
                     <asp:TemplateField>
                         <HeaderTemplate>Mitglieder</HeaderTemplate>
                         <ItemTemplate>
-                            <asp:Button runat="server" ID="btnMitglieder" Text="Mitglieder Editieren" OnClick="btnMitglieder_Click" CssClass="btn-primary" />
+                            <asp:Button runat="server" ID="btnMitglieder" Text="Mitglieder" OnClick="btnMitglieder_Click" CssClass="btn-primary" />
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

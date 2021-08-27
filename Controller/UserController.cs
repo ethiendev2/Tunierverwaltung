@@ -58,6 +58,11 @@ namespace Tunierverwaltung.Controller
         {
             return User != null;
         }
+
+        public bool isGuest()
+        {
+            return User.Role == Role.Guest;
+        }
         #endregion
     }
 }

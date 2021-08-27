@@ -30,7 +30,18 @@ namespace Tunierverwaltung
 
         protected void Page_Load(object sender, EventArgs e)
         {
-                
+
+            if (Global.UserController.isGuest())
+            {
+                GridViewMannschaftenOverview.Visible = false;
+            }
+            else
+            {
+                GridViewMannschaftenOverview.Visible = true;
+            }
+
+
+
             TableRow row = new TableRow();
             TableCell cell1 = new TableCell();
             TableCell cell2 = new TableCell();
@@ -125,6 +136,16 @@ namespace Tunierverwaltung
                 BindGridMannschaftOverview();
             }
 
+        }
+
+        protected void GridViewMannschaften_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (Global.UserController.User.Role == Role.Guest)
+            {
+                int row = e.Row.Cells.Count - 1;
+                e.Row.Cells[row].Visible = false;
+
+            }
         }
     }
 

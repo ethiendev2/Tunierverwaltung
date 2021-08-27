@@ -9,7 +9,7 @@
 
         <div>
             <h1>Physiotherapeuten</h1>
-            <asp:GridView ID="GridViewPhysio" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewPhysio" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridViewPhysio_RowDataBound" ShowFooter="true" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="PhysioID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />

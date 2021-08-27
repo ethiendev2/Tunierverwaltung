@@ -27,6 +27,16 @@ namespace Tunierverwaltung
         bool[] rowChanged;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Global.UserController.isGuest())
+            {
+                btnUpdate.Visible = false;
+                GridViewTennisspieler.ShowFooter = false;
+            }
+            else
+            {
+                btnUpdate.Visible = true;
+                GridViewTennisspieler.ShowFooter = true;
+            }
 
             int totalRows = GridViewTennisspieler.Rows.Count;
             rowChanged = new bool[totalRows];
@@ -207,6 +217,16 @@ namespace Tunierverwaltung
                 if (e.Row.DataItem == (object)blankItem)
                     e.Row.Visible = false;
             };
+        }
+
+        protected void GridViewTennisspieler_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (Global.UserController.User.Role == Role.Guest)
+            {
+                int row = e.Row.Cells.Count - 1;
+                e.Row.Cells[row].Visible = false;
+
+            }
         }
     }
 }

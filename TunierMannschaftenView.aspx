@@ -19,7 +19,7 @@
         </div>
         <div>
             <h1> Mannschaften entfernen </h1>
-            <asp:GridView ID="GridViewMannschaften" runat="server" AutoGenerateColumns="False" ShowFooter="false" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewMannschaften" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridViewMannschaften_RowDataBound" ShowFooter="false" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />

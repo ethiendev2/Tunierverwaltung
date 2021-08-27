@@ -51,6 +51,18 @@ namespace Tunierverwaltung
                 BindGridMitglieder();
                 BindGridTeilnehmer();
             }
+            if (Global.UserController.isGuest())
+            {
+                GridViewTeilnehmer.Visible = false;
+                header2.Visible = false;
+            }
+            else
+            {
+                GridViewTeilnehmer.Visible = true;
+                header2.Visible = true;
+
+            }
+
         }
 
         public void BindGridMitglieder()
@@ -221,6 +233,16 @@ namespace Tunierverwaltung
                 BindGridTeilnehmer();
             }
 
+        }
+
+        protected void GridViewTeilnehmer_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (Global.UserController.User.Role == Role.Guest)
+            {
+                int row = e.Row.Cells.Count - 1;
+                e.Row.Cells[row].Visible = false;
+
+            }
         }
     }
 

@@ -10,7 +10,7 @@
         <div>
             <h1>Fussballspieler</h1>
 
-            <asp:GridView ID="GridViewFussballspieler" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeaderWhenEmpty="true"
+            <asp:GridView ID="GridViewFussballspieler" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridViewFussballspieler_RowDataBound" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="FussballspielerID">
                 <FooterStyle BackColor="White" ForeColor="#000066" />
