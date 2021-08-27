@@ -15,26 +15,20 @@ namespace Tunierverwaltung.Model.Entity.Personen
     public class User
     {
         #region Eigenschaften
-        private int _userID;
         private string _username;
-        private string _password;
         private Role _role;
         #endregion
 
         #region Modifier / Accessoren
-        public int UserID { get => _userID; set => _userID = value; }
         public string Username { get => _username; set => _username = value; }
-        public string Password { get => _password; set => _password = value; }
         public Role Role { get => _role; set => _role = value; }
 
         #endregion
 
         #region Konstruktoren
-        public User(int v1, string v2, string v3, Role v4)
+        public User(string v2, Role v4)
         {
-            UserID = v1;
             Username = v2;
-            Password = v3;
             Role = v4;
         }
         public User()
@@ -43,6 +37,10 @@ namespace Tunierverwaltung.Model.Entity.Personen
 
 
         #region Worker
+        public bool isGuest()
+        {
+            return Role == Role.Guest;
+        }
         #endregion
     }
 }

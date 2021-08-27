@@ -25,9 +25,35 @@ namespace Tunierverwaltung
     public partial class TunierView : Page
     {
         bool[] rowChanged;
+
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Global.UserController.isGuest())
+            int totalRows = GridViewTunier.Rows.Count;
+            rowChanged = new bool[totalRows];
+
+            lblError.Visible = false;
+
+
+            if (!Page.IsPostBack)
+            {
+                CheckRole();
+                BindGrid();
+
+                setDropDownList();
+            }
+
+        }
+
+        protected void CheckRole()
+        {
+            if (Global.UserController.User.isGuest())
             {
                 btnUpdate.Visible = false;
                 GridViewTunier.ShowFooter = false;
@@ -37,24 +63,6 @@ namespace Tunierverwaltung
                 btnUpdate.Visible = true;
                 GridViewTunier.ShowFooter = true;
             }
-
-
-            int totalRows = GridViewTunier.Rows.Count;
-            rowChanged = new bool[totalRows];
-
-            lblError.Visible = false;
-
-
-            if (!Page.IsPostBack)
-            {
-
-                BindGrid();
-
-                setDropDownList();
-            }
-
-
-
         }
         public void setDropDownList()
         {
@@ -245,7 +253,7 @@ namespace Tunierverwaltung
         protected void GridViewTunier_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            if (Global.UserController.User.Role == Role.Guest)
+            if (Global.UserController.isGuest())
             {
                 int row = e.Row.Cells.Count - 2;
                 e.Row.Cells[row].Visible = false;

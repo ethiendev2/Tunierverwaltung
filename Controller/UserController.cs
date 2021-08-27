@@ -38,14 +38,9 @@ namespace Tunierverwaltung.Controller
         #region Worker
         public void login(string username, string password)
         {
-            User tmp = UserDataMapper.GetByName(username);
-            if (tmp.Password == password)
+            if(UserDataMapper.ValidateUser(username, password))
             {
-                User = tmp;
-            }
-            else
-            {
-                //Password doesn't match, throw error
+                User = UserDataMapper.GetByName(username);
             }
         }
 
@@ -56,12 +51,12 @@ namespace Tunierverwaltung.Controller
 
         public bool isloggedin()
         {
-            return User != null;
+           return User != null;
         }
 
         public bool isGuest()
         {
-            return User.Role == Role.Guest;
+            return User?.Role == Role.Guest;
         }
         #endregion
     }

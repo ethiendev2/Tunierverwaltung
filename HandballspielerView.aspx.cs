@@ -22,19 +22,17 @@ namespace Tunierverwaltung
     public partial class HandballspielerView : Page
     {
         bool[] rowChanged;
+
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Global.UserController.isGuest())
-            {
-                btnUpdate.Visible = false;
-                GridViewHandballspieler.ShowFooter = false;
-            }
-            else
-            {
-                btnUpdate.Visible = true;
-                GridViewHandballspieler.ShowFooter = true;
-            }
 
             int totalRows = GridViewHandballspieler.Rows.Count;
             rowChanged = new bool[totalRows];
@@ -44,6 +42,7 @@ namespace Tunierverwaltung
 
             if (!Page.IsPostBack)
             {
+                CheckRole();
 
                 BindGrid();
 
@@ -52,6 +51,22 @@ namespace Tunierverwaltung
 
 
         }
+
+        protected void CheckRole()
+        {
+
+            if (Global.UserController.User.isGuest())
+            {
+                btnUpdate.Visible = false;
+                GridViewHandballspieler.ShowFooter = false;
+            }
+            else
+            {
+                btnUpdate.Visible = true;
+                GridViewHandballspieler.ShowFooter = true;
+            }
+        }
+
 
         public void setDropDownList()
         {
@@ -220,7 +235,7 @@ namespace Tunierverwaltung
         protected void GridViewHandballspieler_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            if (Global.UserController.User.Role == Role.Guest)
+            if (Global.UserController.isGuest())
             {
                 int row = e.Row.Cells.Count - 1;
                 e.Row.Cells[row].Visible = false;

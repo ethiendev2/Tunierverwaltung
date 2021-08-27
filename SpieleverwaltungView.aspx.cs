@@ -27,10 +27,36 @@ namespace Tunierverwaltung
     public partial class SpieleverwaltungView : Page
     {
         bool[] rowChanged;
-
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Global.UserController.isGuest())
+
+
+            int totalRows = GridViewSpiele.Rows.Count;
+            rowChanged = new bool[totalRows];
+
+            lblError.Visible = false;
+
+            if (!Page.IsPostBack)
+            {
+                CheckRole();
+                BindGrid();
+                generateDropDownList();
+                setDropDownList();
+            }
+
+        }
+
+
+        protected void CheckRole()
+        {
+            if (Global.UserController.User.isGuest())
             {
                 btnUpdate.Visible = false;
                 GridViewSpiele.ShowFooter = false;
@@ -40,22 +66,6 @@ namespace Tunierverwaltung
                 btnUpdate.Visible = true;
                 GridViewSpiele.ShowFooter = true;
             }
-
-            int totalRows = GridViewSpiele.Rows.Count;
-            rowChanged = new bool[totalRows];
-
-            lblError.Visible = false;
-
-            if (!Page.IsPostBack)
-            {
-
-                BindGrid();
-                generateDropDownList();
-                setDropDownList();
-            }
-
-
-
         }
 
         public void BindGrid()
@@ -284,7 +294,7 @@ namespace Tunierverwaltung
         protected void GridViewSpiele_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            if (Global.UserController.User.Role == Role.Guest)
+            if (Global.UserController.isGuest())
             {
                 int row = e.Row.Cells.Count - 1;
                 e.Row.Cells[row].Visible = false;

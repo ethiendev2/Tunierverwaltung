@@ -22,18 +22,17 @@ namespace Tunierverwaltung
     public partial class PhysioView : Page
     {
         bool[] rowChanged;
+
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Global.UserController.isGuest())
-            {
-                btnUpdate.Visible = false;
-                GridViewPhysio.ShowFooter = false;
-            }
-            else
-            {
-                btnUpdate.Visible = true;
-                GridViewPhysio.ShowFooter = true;
-            }
+
 
 
             int totalRows = GridViewPhysio.Rows.Count;
@@ -44,6 +43,7 @@ namespace Tunierverwaltung
 
             if (!Page.IsPostBack)
             {
+                CheckRole();
 
                 BindGrid();
 
@@ -51,6 +51,21 @@ namespace Tunierverwaltung
 
 
         }
+
+        protected void CheckRole()
+        {
+            if (Global.UserController.User.isGuest())
+            {
+                btnUpdate.Visible = false;
+                GridViewPhysio.ShowFooter = false;
+            }
+            else
+            {
+                btnUpdate.Visible = true;
+                GridViewPhysio.ShowFooter = true;
+            }
+        }
+
 
         public void BindGrid()
         {
@@ -201,7 +216,7 @@ namespace Tunierverwaltung
         protected void GridViewPhysio_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            if (Global.UserController.User.Role == Role.Guest)
+            if (Global.UserController.isGuest())
             {
                 int row = e.Row.Cells.Count - 1;
                 e.Row.Cells[row].Visible = false;

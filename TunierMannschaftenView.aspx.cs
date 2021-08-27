@@ -25,22 +25,17 @@ namespace Tunierverwaltung
 {
     public partial class TunierMannschaftenView : Page
     {
-
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (Global.UserController.isGuest())
-            {
-                GridViewMannschaftenOverview.Visible = false;
-            }
-            else
-            {
-                GridViewMannschaftenOverview.Visible = true;
-            }
-
-
 
             TableRow row = new TableRow();
             TableCell cell1 = new TableCell();
@@ -62,9 +57,24 @@ namespace Tunierverwaltung
 
             if (!Page.IsPostBack)
             {
-
+                CheckRole();
                 BindGridMannschaft();
                 BindGridMannschaftOverview();
+            }
+        }
+
+        protected void CheckRole()
+        {
+
+            if (Global.UserController.User.isGuest())
+            {
+                GridViewMannschaftenOverview.Visible = false;
+                header2.Visible = false;
+            }
+            else
+            {
+                GridViewMannschaftenOverview.Visible = true;
+                header2.Visible = true;
             }
         }
 
@@ -140,7 +150,7 @@ namespace Tunierverwaltung
 
         protected void GridViewMannschaften_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (Global.UserController.User.Role == Role.Guest)
+            if (Global.UserController.isGuest())
             {
                 int row = e.Row.Cells.Count - 1;
                 e.Row.Cells[row].Visible = false;

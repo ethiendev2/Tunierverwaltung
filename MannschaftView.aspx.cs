@@ -24,20 +24,17 @@ namespace Tunierverwaltung
     {
 
         bool[] rowChanged;
-
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Global.UserController.isGuest())
-            {
-                btnUpdate.Visible = false;
-                GridViewMannschaft.ShowFooter = false;
-            }
-            else
-            {
-                btnUpdate.Visible = true;
-                GridViewMannschaft.ShowFooter = true;
-            }
+
 
             int totalRows = GridViewMannschaft.Rows.Count;
             rowChanged = new bool[totalRows];
@@ -47,15 +44,30 @@ namespace Tunierverwaltung
 
             if (!Page.IsPostBack)
             {
+                CheckRole();
 
                 BindGrid();
 
                 setDropDownList();
             }
 
-
-
         }
+
+        protected void CheckRole()
+        {
+            if (Global.UserController.User.isGuest())
+            {
+                btnUpdate.Visible = false;
+                GridViewMannschaft.ShowFooter = false;
+            }
+            else
+            {
+                btnUpdate.Visible = true;
+                GridViewMannschaft.ShowFooter = true;
+            }
+        }
+
+
         public void setDropDownList()
         {
 
@@ -241,7 +253,7 @@ namespace Tunierverwaltung
 
         protected void GridViewMannschaft_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (Global.UserController.User.Role == Role.Guest)
+            if (Global.UserController.isGuest())
             {
                 int row = e.Row.Cells.Count - 2;
                 e.Row.Cells[row].Visible = false;

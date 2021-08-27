@@ -67,7 +67,7 @@
             </asp:GridView>
         </div>
         <br />
-        <h1>Mitglieder hinzufuegen</h1>
+        <h1 runat="server" id="header2">Mitglieder hinzufuegen</h1>
 
          <div>
             <asp:GridView ID="GridViewTeilnehmer" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridViewTeilnehmer_RowDataBound" ShowFooter="false" ShowHeaderWhenEmpty="true"

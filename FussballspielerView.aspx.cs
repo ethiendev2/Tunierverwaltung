@@ -22,9 +22,36 @@ namespace Tunierverwaltung
     public partial class FussballspielerView : Page
     {
         bool[] rowChanged;
+
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!Page.IsPostBack)
+            {
+
+                CheckRole();
+
+                BindGrid();
+
+                setDropDownList();
+            }
+
+            int totalRows = GridViewFussballspieler.Rows.Count;
+            rowChanged = new bool[totalRows];
+
+            lblError.Visible = false;
+
+        }
+
+        protected void CheckRole()
+        {
 
             if (Global.UserController.isGuest())
             {
@@ -36,22 +63,6 @@ namespace Tunierverwaltung
                 btnUpdate.Visible = true;
                 GridViewFussballspieler.ShowFooter = true;
             }
-
-            if (!Page.IsPostBack)
-            {
-
-                BindGrid();
-
-                setDropDownList();
-            }
-
-
-
-            int totalRows = GridViewFussballspieler.Rows.Count;
-            rowChanged = new bool[totalRows];
-
-            lblError.Visible = false;
-
         }
 
         public void setDropDownList()
@@ -220,7 +231,7 @@ namespace Tunierverwaltung
 
         protected void GridViewFussballspieler_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (Global.UserController.User.Role == Role.Guest)
+            if (Global.UserController.isGuest())
             {
                 int row = e.Row.Cells.Count - 1;
                 e.Row.Cells[row].Visible = false;

@@ -26,6 +26,14 @@ namespace Tunierverwaltung
 {
     public partial class TunierSpieleView : Page
     {
+
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             lblError.Visible = false;

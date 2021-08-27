@@ -6,7 +6,7 @@
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
     <body>
-        <h1> Tunier Mannschaften </h1>
+        <h1> Tunier </h1>
         <div>
              <asp:Table ID="tblTunier" runat="server" Width="100%"  BackColor="#ffffff" BorderColor="#000000" Font-Size="Large" BorderStyle="Solid"> 
             <asp:TableRow>
@@ -18,7 +18,7 @@
         </asp:Table>  
         </div>
         <div>
-            <h1> Mannschaften entfernen </h1>
+            <h1> Mannschaften im Tunier </h1>
             <asp:GridView ID="GridViewMannschaften" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridViewMannschaften_RowDataBound" ShowFooter="false" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">
@@ -72,7 +72,7 @@
         </div>
 
         <div>
-            <h1> Mannschaft hinzufuegen </h1>
+            <h1 runat="server" id="header2"> Mannschaft hinzufuegen </h1>
             <asp:GridView ID="GridViewMannschaftenOverview" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"
                 CellPadding="3" DataKeyNames="MannschaftID">

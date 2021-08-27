@@ -22,7 +22,13 @@ namespace Tunierverwaltung
 {
     public partial class MannschaftMitgliederView : Page
     {
-
+        protected override void OnPreInit(EventArgs e)
+        {
+            if (!Global.UserController.isloggedin())
+            {
+                Response.Redirect("Default.aspx");
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,8 +56,16 @@ namespace Tunierverwaltung
 
                 BindGridMitglieder();
                 BindGridTeilnehmer();
+                CheckRole();
             }
-            if (Global.UserController.isGuest())
+
+
+        }
+
+        protected void CheckRole()
+        {
+
+            if (Global.UserController.User.isGuest())
             {
                 GridViewTeilnehmer.Visible = false;
                 header2.Visible = false;
@@ -62,7 +76,6 @@ namespace Tunierverwaltung
                 header2.Visible = true;
 
             }
-
         }
 
         public void BindGridMitglieder()
@@ -237,7 +250,7 @@ namespace Tunierverwaltung
 
         protected void GridViewTeilnehmer_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (Global.UserController.User.Role == Role.Guest)
+            if (Global.UserController.isGuest())
             {
                 int row = e.Row.Cells.Count - 1;
                 e.Row.Cells[row].Visible = false;
