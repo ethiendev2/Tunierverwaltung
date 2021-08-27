@@ -66,7 +66,7 @@ namespace Tunierverwaltung.Model.DataMappers
                 {
                     command.CommandType = System.Data.CommandType.Text;
 
-                    command.CommandText = GET_USER;
+                    command.CommandText = GET_BY_NAME;
                     command.Parameters.AddWithValue("@Username", username);
 
                     MySqlDataReader reader = command.ExecuteReader();

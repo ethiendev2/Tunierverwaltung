@@ -21,20 +21,30 @@ namespace Tunierverwaltung
                 lblpassword.Visible = false;
                 tbusername.Visible = false;
                 tbpassword.Visible = false;
+                btnAnmelden.Visible = false;
+
             }
             else
             {
                 lblwelcome.Text = String.Format("Bitte melden Sie sich an.");
-                lblusername.Visible = false;
-                lblpassword.Visible = false;
-                tbusername.Visible = false;
-                tbpassword.Visible = false;
+                lblusername.Visible = true;
+                lblpassword.Visible = true;
+                tbusername.Visible = true;
+                tbpassword.Visible = true;
             }
         }
 
         protected void btnAnmelden_Click(object sender, EventArgs e)
         {
-            Global.UserController.login(tbusername.Text, tbpassword.Text);
+            if(tbusername.Text != "" || tbusername.Text != null)
+            {
+                Global.UserController.login(tbusername.Text, tbpassword.Text);
+            }
+            else
+            {
+                //Login failed, show error
+            }
+                Response.Redirect("Default.aspx");
         }
 
     }
