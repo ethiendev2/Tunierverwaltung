@@ -53,6 +53,11 @@ namespace Tunierverwaltung.Controller
         {
             User = null;
         }
+
+        public bool isloggedin()
+        {
+            return User != null;
+        }
         #endregion
     }
 }
