@@ -45,14 +45,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto" runat="server" id="navigation">
                     <li class="nav-item"><a class="nav-link" href="/MannschaftView.aspx">Mannschaftsverwaltung</a></li>
                     <li class="nav-item"><a class="nav-link" href="/PersonenView.aspx">Personenverwaltung</a></li>
                     <li class="nav-item"><a class="nav-link" href="/TunierView.aspx">Tunierverwaltung</a></li>
                     <li class="nav-item"><a class="nav-link" href="/TunierSpieleView.aspx">Spieleverwaltung</a></li>
                     <li class="nav-item"><a class="nav-link" href="/RankingView.aspx">Ranking</a></li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdown04">Teilnehmer <span class="caret"></span></a>
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdown04">Teilnehmer<span class="caret"></span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             <a class="dropdown-item" href="/FussballspielerView.aspx">Fussballspieler</a>
                             <a class="dropdown-item" href="/TennisspielerView.aspx">Tennisspieler</a>
@@ -65,7 +65,9 @@
                         </div>
                     </li>
                     <li class="nav-item" runat="server" id="adminpage"><a class="nav-link" href="/AdminView.aspx">Admin</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Default.aspx">Login</a></li>
+                </ul>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="/Default.aspx">Account</a></li>
                 </ul>
             </div>
         </nav>
